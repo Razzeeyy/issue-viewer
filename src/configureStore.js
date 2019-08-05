@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
-import reducer from './reducers/reducer'
+import reducer from './reducers'
 
 function configureStore() {
     const isDev = process.env.NODE_ENV === 'development'
