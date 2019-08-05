@@ -3,12 +3,14 @@ import { Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createBrowserHistory } from 'history'
 import configureStore from './configureStore'
+import configureApi from './api'
 import ErrorBoundary from './components/ErrorBoundary'
 import ErrorPage from './components/pages/ErrorPage'
 import MainPage from './components/pages/MainPage'
 
 const store = configureStore()
 const history = createBrowserHistory()
+const api = configureApi()
 
 function App() {
   return (
