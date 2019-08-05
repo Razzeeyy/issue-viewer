@@ -4,7 +4,8 @@ import { Provider } from 'react-redux'
 import { createBrowserHistory } from 'history'
 import configureStore from './configureStore'
 import ErrorBoundary from './components/ErrorBoundary'
-import ErrorPage from './components/ErrorPage'
+import ErrorPage from './components/pages/ErrorPage'
+import MainPage from './components/pages/MainPage'
 
 const store = configureStore()
 const history = createBrowserHistory()
@@ -15,7 +16,7 @@ function App() {
       <Router history={history}>
         <ErrorBoundary>
           <Switch>
-            <Route path="/" exact render={() => (<>Body</>)}/>
+            <Route path="/" exact component={MainPage}/>
             <Route component={ErrorPage}/>
           </Switch>
         </ErrorBoundary>
