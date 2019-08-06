@@ -11,7 +11,7 @@ export default class Issue extends React.PureComponent {
 
     render() {
         const {
-            title
+            issue
         } = this.props
 
         const {
@@ -20,7 +20,7 @@ export default class Issue extends React.PureComponent {
 
         return (
             <li onClick={handleClick}>
-                {title}
+                {issue.title}
             </li>
         )
     }

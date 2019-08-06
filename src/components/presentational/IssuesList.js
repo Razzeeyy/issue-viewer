@@ -11,7 +11,7 @@ export default class IssuesList extends React.PureComponent {
         return (
             <ul>
                 {
-                    issues.map(issue => <Issue key={issue.id} title={issue.title}/>)
+                    issues.map(issue => <Issue key={issue.id} issue={issue}/>)
                 }
             </ul>
         )
