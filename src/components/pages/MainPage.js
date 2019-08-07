@@ -1,13 +1,13 @@
 import React from 'react'
 
-import RepoSearch from '../presentational/RepoSearch'
+import RepoSearchContainer from '../containers/RepoSearchContainer'
 import IssuesList from '../presentational/IssuesList'
 import Pagination from '../presentational/Pagination'
 
 export default function MainPage(props) {
     return (
         <div>
-            <RepoSearch/>
+            <RepoSearchContainer />
             <IssuesList issues={[
                 {id: 0, title: "issue 1"},
                 {id: 1, title: "issue 2"}

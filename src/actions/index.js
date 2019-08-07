@@ -1,8 +1,12 @@
+import {
+    ACTION_INPUT_USER,
+    ACTION_INPUT_REPO
+} from '../constants'
+
 /**
  * flux standard action helper
  * for more info refer to: https://github.com/redux-utilities/flux-standard-action
  */
-
 export default function action(type, payload, error, meta) {
     return {
         type,
@@ -10,4 +14,12 @@ export default function action(type, payload, error, meta) {
         error,
         meta
     }
+}
+
+export function actionInputUser(user) {
+    return action(ACTION_INPUT_USER, user)
+}
+
+export function actionInputRepo(repo) {
+    return action(ACTION_INPUT_REPO, repo)
 }
