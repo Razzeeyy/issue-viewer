@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import RepoSearch from '../presentational/RepoSearch'
 import { getInputUser, getInputRepo } from '../../reducers'
-import { actionInputUser, actionInputRepo } from '../../actions'
+import { actionInputUser, actionInputRepo, actionInputSearch } from '../../actions'
 
 export default function RepoSearchContainer(props) {
     const user = useSelector(getInputUser)
@@ -17,8 +17,18 @@ export default function RepoSearchContainer(props) {
         (repo) => dispatch(actionInputRepo(repo)),
         [dispatch]
     )
+    const handleClickSearch = useCallback(
+        () => dispatch(actionInputSearch()),
+        [dispatch]
+    )
 
     return (
-        <RepoSearch user={user} repo={repo} onChangeUser={handleChangeUser} onChangeRepo={handleChangeRepo}/>
+        <RepoSearch
+            user={user}
+            repo={repo}
+            onChangeUser={handleChangeUser}
+            onChangeRepo={handleChangeRepo}
+            onClickSearch={handleClickSearch}
+        />
     )
 }

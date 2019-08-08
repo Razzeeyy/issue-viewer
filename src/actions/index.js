@@ -1,6 +1,7 @@
 import {
     ACTION_INPUT_USER,
-    ACTION_INPUT_REPO
+    ACTION_INPUT_REPO,
+    ACTION_INPUT_SEARCH
 } from '../constants'
 
 /**
@@ -22,4 +23,8 @@ export function actionInputUser(user) {
 
 export function actionInputRepo(repo) {
     return action(ACTION_INPUT_REPO, repo)
+}
+
+export function actionInputSearch() {
+    return action(ACTION_INPUT_SEARCH)
 }
