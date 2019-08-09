@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-boost'
+import gql from 'graphql-tag'
 
 export default function configureApi() {
     const client = new ApolloClient({
@@ -8,5 +9,30 @@ export default function configureApi() {
         }
     })
     
-    return client
+    return {
+        requestIssues(user, repo) {
+            const query = gql`
+                query RepoIssues($user: String!, $repo: String!) {
+                    repository(owner: $user, name: $repo) {
+                        issues(last: 5) {
+                            edges {
+                                node {
+                                    id
+                                    number
+                                    title
+                                }
+                            }
+                        }
+                    }
+                }
+            `
+            return client.query({
+                query,
+                variables: {
+                    user,
+                    repo
+                }
+            })
+        }
+    }
 }
