@@ -12,5 +12,6 @@ export function* requestIssues(api) {
     const repo = yield select(getInputRepo)
     if(user && repo) {
         const data = yield call(api.requestIssues, user, repo)
+        console.log(data)
     }
 }
