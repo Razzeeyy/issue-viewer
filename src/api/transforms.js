@@ -1,25 +1,14 @@
-import { arrayToObject } from '../util'
+import { normalize } from 'normalizr'
+import { issue, repo } from './entities'
 
 export function transformIssues(response) {
-    const issueEdges = response.data.repository.issues.edges
-    const issuesArray = issueEdges.map(el => el.node)
-    const issues = arrayToObject(issuesArray)
-    return {
-        entities: {
-            issues
-        },
-        result: Object.keys(issues)
-    }
+    const queryIssuesSchema = [ issue ]
+    const issues = response.data.repository.issues.edges.map(el => el.node)
+    return normalize(issues, queryIssuesSchema)
 }
 
 export function transformRepos(response) {
-    const reposEdges = response.data.user.repositories.edges
-    const reposArray = reposEdges.map(el => el.node)
-    const repos = arrayToObject(reposArray)
-    return {
-        entities: {
-            repos
-        },
-        result: Object.keys(repos)
-    }
+    const queryReposSchema = [repo]
+    response = response.data.user.repositories.edges.map(el => el.node)
+    return normalize(response, queryReposSchema)
 }

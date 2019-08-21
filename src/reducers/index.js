@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import input, * as fromInput from './input'
-import issues, * as fromIssues from './issues'
+import entities from './entities'
 
 export default combineReducers({
     input,
-    issues
+    entities
 })
 
 export function getInputUser(state) {
@@ -16,5 +16,6 @@ export function getInputRepo(state) {
 }
 
 export function getIssues(state) {
-    return fromIssues.getIssues(state.issues)
+    const issues = state.entities.issues
+    return issues ? Object.values(issues) : []
 }

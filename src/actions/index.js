@@ -1,11 +1,4 @@
-import {
-    ACTION_INPUT_USER,
-    ACTION_INPUT_REPO,
-    ACTION_INPUT_SEARCH,
-    ACTION_FETCH_ISSUES,
-    ACTION_FETCH_ISSUES_OK,
-    ACTION_FETCH_ISSUES_FAIL,
-} from '../constants'
+import * as constants from '../constants'
 
 /**
  * flux standard action helper
@@ -21,25 +14,39 @@ export default function action(type, payload, error, meta) {
 }
 
 export function actionInputUser(user) {
-    return action(ACTION_INPUT_USER, user)
+    return action(constants.ACTION_INPUT_USER, user)
 }
 
 export function actionInputRepo(repo) {
-    return action(ACTION_INPUT_REPO, repo)
+    return action(constants.ACTION_INPUT_REPO, repo)
 }
 
 export function actionInputSearch() {
-    return action(ACTION_INPUT_SEARCH)
+    return action(constants.ACTION_INPUT_SEARCH)
 }
 
+
 export function actionFetchIssues() {
-    return action(ACTION_FETCH_ISSUES)
+    return action(constants.ACTION_FETCH_ISSUES)
 }
 
 export function actionFetchIssuesOk(data) {
-    return action(ACTION_FETCH_ISSUES_OK, data)
+    return action(constants.ACTION_FETCH_ISSUES_OK, data)
 }
 
 export function actionFetchIssuesFail(error) {
-    return action(ACTION_FETCH_ISSUES_FAIL, error, true)
+    return action(constants.ACTION_FETCH_ISSUES_FAIL, error, true)
+}
+
+
+export function actionFetchRepos() {
+    return action(constants.ACTION_FETCH_REPOS)
+}
+
+export function actionFetchReposOk(data) {
+    return action(constants.ACTION_FETCH_REPOS_OK, data)
+}
+
+export function actionFetchReposFail(error) {
+    return action(constants.ACTION_FETCH_REPOS_FAIL, error, true)
 }
