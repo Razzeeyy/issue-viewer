@@ -1,14 +1,16 @@
 import { normalize } from 'normalizr'
-import { issue, repo } from './entities'
+import { user, repo } from './entities'
 
 export function transformIssues(response) {
-    const queryIssuesSchema = [ issue ]
-    const issues = response.data.repository.issues.edges.map(el => el.node)
-    return normalize(issues, queryIssuesSchema)
+    const queryIssuesSchema = repo
+    response = response.data.repository
+    response.issues = response.issues.edges.map(el => el.node)
+    return normalize(response, queryIssuesSchema)
 }
 
 export function transformRepos(response) {
-    const queryReposSchema = [repo]
-    response = response.data.user.repositories.edges.map(el => el.node)
+    const queryReposSchema = user
+    response = response.data.user
+    response.repositories = response.repositories.edges.map(el => el.node)
     return normalize(response, queryReposSchema)
 }

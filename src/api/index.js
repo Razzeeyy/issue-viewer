@@ -10,27 +10,22 @@ export default function configureApi() {
             Authorization: 'bearer 1cbb3b1063f670289747dbc8784d8b9beedfbac6'
         }
     })
-
-    async function request(query, transform) {
-        const response = await client.query(query)
-        if(!transform)
-            return response
-        return transform(response)
-    }
     
     const api = {
         async requestIssues(user, repo) {
-            return request({
+            const repsonse = await client.query({
                 query: queryIssues,
                 variables: { user, repo }
-            }, transformIssues)
+            })
+            return transformIssues(repsonse)
         },
 
         async requestRepos(user) {
-            return request({
+            const response = await client.query({
                 query: queryRepos,
                 variables: { user }
-            }, transformRepos)
+            })
+            return transformRepos(response)
         }
     }
 
