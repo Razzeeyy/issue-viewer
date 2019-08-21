@@ -5,3 +5,7 @@ export function arrayToObject(arr, key='id') {
     }, {})
     return obj
 }
+
+export function deduplicate(arr) {
+    return Array.from(new Set(arr))
+}

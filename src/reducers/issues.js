@@ -1,7 +1,7 @@
 import {
     ACTION_FETCH_ISSUES_OK
 } from '../constants'
-
+import { deduplicate } from '../util'
 
 const defaultState = {
     byNumber: {},
@@ -17,10 +17,10 @@ export default function inputReducer(state=defaultState, { type, payload }) {
                     ...state.byNumber,
                     ...payload.entities.issues
                 },
-                all: [
+                all: deduplicate([
                     ...state.all,
                     ...payload.result
-                ]
+                ])
             }
         default:
             return state
