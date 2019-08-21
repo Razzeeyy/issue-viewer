@@ -1,7 +1,7 @@
 import { takeLatest, delay, select, call, put } from 'redux-saga/effects'
 import { ACTION_INPUT_USER, ACTION_INPUT_REPO, ACTION_INPUT_SEARCH } from '../constants'
 import { getInputUser, getInputRepo } from '../reducers'
-import { actionFetchIssuesOk, actionFetchIssuesFail } from '../actions'
+import { actionFetchIssues, actionFetchIssuesOk, actionFetchIssuesFail } from '../actions'
 
 export function* watchInputSearch(api) {
     yield takeLatest([ACTION_INPUT_USER, ACTION_INPUT_REPO, ACTION_INPUT_SEARCH], requestIssues, api)
@@ -13,6 +13,7 @@ export function* requestIssues(api) {
     const repo = yield select(getInputRepo)
     if(user && repo) {
         try {
+            yield put(actionFetchIssues())
             const response = yield call(api.requestIssues, user, repo)
             yield put(actionFetchIssuesOk(response))
         } catch(err) {
