@@ -16,6 +16,22 @@ export function getInputRepo(state) {
 }
 
 export function getIssues(state) {
+    //TODO: FIXME: This needs some seriours rewrite
+    const noIssues = []
+    const inputUser = getInputUser(state)
+    const inputRepo = getInputRepo(state)
+    if(!inputUser || !inputRepo) {
+        return noIssues
+    }
+    const repos = state.entities.repos
     const issues = state.entities.issues
-    return issues ? Object.values(issues) : []
+    if(!repos || !issues) {
+        return noIssues
+    }
+    const matchingRepos = Object.values(repos).filter(el => el.owner === inputUser && el.name === inputRepo)
+    if(matchingRepos.length !== 1) {
+        return noIssues
+    }
+    const repo = matchingRepos[0]
+    return repo.issues ? repo.issues.map(el => issues[el]) : noIssues
 }

@@ -1,12 +1,14 @@
 export default function entitiesReducer(state={}, {payload, error}) {
+    //TODO: FIXME: This needs some seriours rewrite
     if(!error && payload && payload.entities) {
         const entities = payload.entities
-        for(let entity of Object.keys(entities)) {
-            state[entity] = {
+        return Object.keys(entities).reduce((newState, entity) => {
+            newState[entity] = {
                 ...state[entity],
                 ...entities[entity]
             }
-        }
+            return newState
+        }, {})
     }
     return state
 }
