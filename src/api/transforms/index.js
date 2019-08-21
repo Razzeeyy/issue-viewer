@@ -1,10 +1,4 @@
-function arrayToObject(arr, key='id') {
-    const obj = arr.reduce((acc, el) => {
-        acc[el[key]] = el
-        return acc
-    }, {})
-    return obj
-}
+import { arrayToObject } from '../../util'
 
 export function issues(response) {
     const issueEdges = response.data.repository.issues.edges

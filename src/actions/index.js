@@ -2,7 +2,8 @@ import {
     ACTION_INPUT_USER,
     ACTION_INPUT_REPO,
     ACTION_INPUT_SEARCH,
-    ACTION_FETCH_ISSUES_OK
+    ACTION_FETCH_ISSUES_OK,
+    ACTION_FETCH_ISSUES_FAIL
 } from '../constants'
 
 /**
@@ -32,4 +33,8 @@ export function actionInputSearch() {
 
 export function actionFetchIssuesOk(data) {
     return action(ACTION_FETCH_ISSUES_OK, data)
+}
+
+export function actionFetchIssuesFail(error) {
+    return action(ACTION_FETCH_ISSUES_FAIL, error, true)
 }
