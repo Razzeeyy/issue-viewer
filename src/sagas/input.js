@@ -23,17 +23,17 @@ function* requestIssues(api) {
 }
 
 export function* watchInputUser(api) {
-    yield takeLatest(ACTION_INPUT_USER, requestRepositories, api)
+    yield takeLatest(ACTION_INPUT_USER, requestRepos, api)
 }
 
-function* requestRepositories(api) {
+function* requestRepos(api) {
     yield delay(300)
     const user = yield select(getInputUser)
     //TODO: write state + handle organization repo completion
     console.log('req repos')
     if(user) {
         try {
-            const response = yield call(api.requestRepositories, user)
+            const response = yield call(api.requestRepos, user)
             console.log(response)
         } catch(err) {
             console.error(err)

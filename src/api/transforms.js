@@ -1,9 +1,9 @@
-import { arrayToObject } from '../../util'
+import { arrayToObject } from '../util'
 
-export function issues(response) {
+export function transformIssues(response) {
     const issueEdges = response.data.repository.issues.edges
     const issuesArray = issueEdges.map(el => el.node)
-    const issues = arrayToObject(issuesArray, 'number')
+    const issues = arrayToObject(issuesArray)
     return {
         entities: {
             issues
@@ -12,14 +12,14 @@ export function issues(response) {
     }
 }
 
-export function repositories(response) {
+export function transformRepos(response) {
     const reposEdges = response.data.user.repositories.edges
     const reposArray = reposEdges.map(el => el.node)
-    const repositories = arrayToObject(reposArray)
+    const repos = arrayToObject(reposArray)
     return {
         entities: {
-            repositories
+            repos
         },
-        result: Object.keys(repositories)
+        result: Object.keys(repos)
     }
 }

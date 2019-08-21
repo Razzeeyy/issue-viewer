@@ -1,7 +1,7 @@
 import ApolloClient from 'apollo-boost'
-import gql from 'graphql-tag'
 
-import { issues, repositories } from './transforms'
+import { queryIssues, queryRepos } from './queries'
+import { transformIssues, transformRepos } from './transforms'
 
 export default function configureApi() {
     const client = new ApolloClient({
@@ -18,55 +18,21 @@ export default function configureApi() {
         return transform(response)
     }
     
-    return {
+    const api = {
         async requestIssues(user, repo) {
-            const query = gql`
-                query RepoIssues($user: String!, $repo: String!) {
-                    repository(owner: $user, name: $repo) {
-                        issues(last: 100) {
-                            edges {
-                                node {
-                                    id
-                                    number
-                                    title
-                                }
-                            }
-                        }
-                    }
-                }
-            `
-
             return request({
-                query,
-                variables: {
-                    user,
-                    repo
-                }
-            }, issues)
+                query: queryIssues,
+                variables: { user, repo }
+            }, transformIssues)
         },
 
-        async requestRepositories(user) {
-            const query = gql`
-                query UserRepos($user: String!) {
-                    user(login: $user) {
-                        repositories(last: 100) {
-                            edges {
-                                node {
-                                    id
-                                    name
-                                }
-                            }
-                        }
-                    }
-                }
-            `
-
+        async requestRepos(user) {
             return request({
-                query,
-                variables: {
-                    user
-                }
-            }, repositories)
+                query: queryRepos,
+                variables: { user }
+            }, transformRepos)
         }
     }
+
+    return api
 }
