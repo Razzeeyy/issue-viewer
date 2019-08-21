@@ -7,7 +7,7 @@ export function* watchInputSearch(api) {
     yield takeLatest([ACTION_INPUT_USER, ACTION_INPUT_REPO, ACTION_INPUT_SEARCH], requestIssues, api)
 }
 
-export function* requestIssues(api) {
+function* requestIssues(api) {
     yield delay(300)
     const user = yield select(getInputUser)
     const repo = yield select(getInputRepo)
@@ -18,6 +18,25 @@ export function* requestIssues(api) {
             yield put(actionFetchIssuesOk(response))
         } catch(err) {
             yield put(actionFetchIssuesFail(err))
+        }
+    }
+}
+
+export function* watchInputUser(api) {
+    yield takeLatest(ACTION_INPUT_USER, requestRepositories, api)
+}
+
+function* requestRepositories(api) {
+    yield delay(300)
+    const user = yield select(getInputUser)
+    //TODO: write state + handle organization repo completion
+    console.log('req repos')
+    if(user) {
+        try {
+            const response = yield call(api.requestRepositories, user)
+            console.log(response)
+        } catch(err) {
+            console.error(err)
         }
     }
 }
