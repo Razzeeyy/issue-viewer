@@ -28,9 +28,9 @@ export default function inputReducer(state=defaultState, action) {
 }
 
 export function getInputUser(state) {
-    return state.user
+    return state.user || ''
 }
 
 export function getInputRepo(state) {
-    return state.repo
+    return state.repo || ''
 }

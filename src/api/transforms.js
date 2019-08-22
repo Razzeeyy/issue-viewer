@@ -3,14 +3,20 @@ import { user, repo } from './entities'
 
 export function transformIssues(response) {
     const queryIssuesSchema = repo
-    response = response.data.repository
-    response.issues = response.issues.edges.map(el => el.node)
-    return normalize(response, queryIssuesSchema)
+    const responseRepo = response.data.repository
+    const transformedRepo = {
+        ...responseRepo,
+        issues: responseRepo.issues.edges.map(el => el.node)
+    }
+    return normalize(transformedRepo, queryIssuesSchema)
 }
 
 export function transformRepos(response) {
     const queryReposSchema = user
-    response = response.data.user
-    response.repositories = response.repositories.edges.map(el => el.node)
-    return normalize(response, queryReposSchema)
+    const responseUser = response.data.user
+    const transformedUser = {
+        ...responseUser,
+        repositories: responseUser.repositories.edges.map(el => el.node)
+    }
+    return normalize(transformedUser, queryReposSchema)
 }
