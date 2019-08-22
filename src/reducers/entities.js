@@ -30,8 +30,8 @@ export function getUsers(state) {
 export function getRepoByOwnerAndName(state, owner, name) {
     const repos = getRepos(state)
     const matching = Object.values(repos).filter(
-        el => el.owner === owner &&
-        el.name === name
+        el => el.owner.toLowerCase() === owner.toLowerCase() &&
+        el.name.toLowerCase() === name.toLowerCase()
     )
     return matching.length ? matching[0] : {}
 }
@@ -41,4 +41,10 @@ export function getIssuesForRepoByOwnerAndName(state, owner, name) {
     const repo = getRepoByOwnerAndName(state, owner, name)
     const issues = repo.issues || []
     return issues.map(el => issuesById[el])
+}
+
+export function getReposByOwner(state, owner) {
+    const repos = getRepos(state)
+    const matching = Object.values(repos).filter(el => el.owner.toLowerCase() === owner.toLowerCase())
+    return matching
 }

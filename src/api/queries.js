@@ -36,6 +36,9 @@ export const queryRepos = gql`
                     node {
                         id
                         name
+                        owner {
+                            login
+                        }
                     }
                 }
             }
