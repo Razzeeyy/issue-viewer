@@ -19,7 +19,7 @@ export default function RepoSearch({
                 <input type="text" name="repository" placeholder="Репозиторий" value={repo} onChange={handleRepoChange}/>
                 <input type="submit" value="Поиск"/>
             </form>
-            <RepoHintsList repos={repos} />
+            <RepoHintsList repos={repos} onHintClicked={(repo) => onChangeRepo(repo)} />
         </>
     )
 }
