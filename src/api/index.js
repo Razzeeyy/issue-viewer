@@ -1,5 +1,6 @@
 import ApolloClient from 'apollo-boost'
 
+import token from './token'
 import { queryIssues, queryRepos, queryIssue } from './queries'
 import { transformIssues, transformRepos, transformIssue } from './transforms'
 
@@ -7,7 +8,7 @@ export default function configureApi() {
     const client = new ApolloClient({
         uri: 'https://api.github.com/graphql',
         headers: {
-            Authorization: 'bearer 1cbb3b1063f670289747dbc8784d8b9beedfbac6'
+            Authorization: `bearer ${token}`
         }
     })
     
