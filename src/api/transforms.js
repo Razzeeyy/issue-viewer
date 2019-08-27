@@ -25,7 +25,8 @@ export function transformIssue(response) {
     const queryIssuesSchema = repo
     const responseRepo = response.data.repository
     const transformedRepo = {
-        ...responseRepo
+        ...responseRepo,
+        issues: [responseRepo.issue]
     }
     return normalize(transformedRepo, queryIssuesSchema)
 }
