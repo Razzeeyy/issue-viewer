@@ -6,6 +6,7 @@ import configureStore from './store'
 import ErrorBoundary from './components/ErrorBoundary'
 import ErrorPage from './components/pages/ErrorPage'
 import MainPage from './components/pages/MainPage'
+import DetailsPage from './components/pages/DetailsPage';
 
 const store = configureStore()
 const history = createBrowserHistory()
@@ -17,6 +18,7 @@ function App() {
         <ErrorBoundary>
           <Switch>
             <Route path="/" exact component={MainPage}/>
+            <Route path="/:user/:repo/:issue"component={DetailsPage}/>
             <Route component={ErrorPage}/>
           </Switch>
         </ErrorBoundary>
