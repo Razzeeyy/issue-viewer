@@ -14,5 +14,6 @@ export const issue = new schema.Entity('issues', {
 
 repo.define({
     issues: [issue],
+    issue,
     owner: user
 })

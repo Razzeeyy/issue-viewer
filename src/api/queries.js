@@ -45,3 +45,25 @@ export const queryRepos = gql`
         }
     }
 `
+
+export const queryIssue = gql`
+    query Issue($user: String!, $repo: String!, $number: Int!) {
+        repository(owner: $user, name: $repo) {
+            id
+            name
+            owner {
+                login
+            }
+            issue(number: $number) {
+                id
+                number
+                title
+                body
+                author {
+                    login
+                    avatarUrl
+                }
+            }
+        }
+    }
+`

@@ -20,3 +20,12 @@ export function transformRepos(response) {
     }
     return normalize(transformedUser, queryReposSchema)
 }
+
+export function transformIssue(response) {
+    const queryIssuesSchema = repo
+    const responseRepo = response.data.repository
+    const transformedRepo = {
+        ...responseRepo
+    }
+    return normalize(transformedRepo, queryIssuesSchema)
+}

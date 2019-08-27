@@ -48,3 +48,9 @@ export function getReposByOwner(state, owner) {
     const matching = Object.values(repos).filter(el => el.owner.toLowerCase() === owner.toLowerCase())
     return matching
 }
+
+export function getIssueByNumberFromRepo(state, user, repo, number) {
+    const issues = getIssuesForRepoByOwnerAndName(state, user, repo)
+    const matching = issues.filter(el => el.number === number)
+    return matching.length ? matching[0] : {}
+}

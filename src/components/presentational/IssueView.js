@@ -3,11 +3,13 @@ import React from 'react'
 export default function IssueView({ issue }) {
     return (
         <div>
-            {issue.title}
+            <a href="/">Back to Main</a>
             <br/>
-            {issue.body}
+            {issue.title || 'Untitled'}
             <br/>
-            {issue.author.login}
+            {issue.body || 'No body'}
+            <br/>
+            {(issue.author && issue.author) || 'Unknown author'}
         </div>
     )
 }

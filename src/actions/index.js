@@ -25,7 +25,6 @@ export function actionInputSearch() {
     return action(constants.ACTION_INPUT_SEARCH)
 }
 
-
 export function actionFetchIssues() {
     return action(constants.ACTION_FETCH_ISSUES)
 }
@@ -38,7 +37,6 @@ export function actionFetchIssuesFail(error) {
     return action(constants.ACTION_FETCH_ISSUES_FAIL, error, true)
 }
 
-
 export function actionFetchRepos() {
     return action(constants.ACTION_FETCH_REPOS)
 }
@@ -49,4 +47,22 @@ export function actionFetchReposOk(data) {
 
 export function actionFetchReposFail(error) {
     return action(constants.ACTION_FETCH_REPOS_FAIL, error, true)
+}
+
+export function actionRequestIssue(user, repo, number) {
+    return action(constants.ACTION_REQUEST_ISSUE, {
+        user, repo, number
+    })
+}
+
+export function actionFetchIssue() {
+    return action(constants.ACTION_FETCH_ISSUE)
+}
+
+export function actionFetchIssueOk(data) {
+    return action(constants.ACTION_FETCH_ISSUE_OK, data)
+}
+
+export function actionFetchIssueFail(error) {
+    return action(constants.ACTION_FETCH_ISSUE_FAIL, error, true)
 }

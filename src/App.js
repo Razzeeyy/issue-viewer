@@ -18,7 +18,7 @@ function App() {
         <ErrorBoundary>
           <Switch>
             <Route path="/" exact component={MainPage}/>
-            <Route path="/:user/:repo/:issue"component={DetailsPage}/>
+            <Route path="/:user/:repo/:number" component={DetailsPage}/>
             <Route component={ErrorPage}/>
           </Switch>
         </ErrorBoundary>

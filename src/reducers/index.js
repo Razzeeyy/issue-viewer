@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import input, * as fromInput from './input'
 import entities, * as fromEntities from './entities'
-import { from } from 'zen-observable';
 
 export default combineReducers({
     input,
@@ -25,4 +24,8 @@ export function getIssues(state) {
 export function getRepoHints(state) {
     const inputUser = getInputUser(state)
     return fromEntities.getReposByOwner(state.entities, inputUser)
+}
+
+export function getIssueByNumberFromRepo(state, user, repo, number) {
+    return fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number)
 }

@@ -1,7 +1,7 @@
 import ApolloClient from 'apollo-boost'
 
-import { queryIssues, queryRepos } from './queries'
-import { transformIssues, transformRepos } from './transforms'
+import { queryIssues, queryRepos, queryIssue } from './queries'
+import { transformIssues, transformRepos, transformIssue } from './transforms'
 
 export default function configureApi() {
     const client = new ApolloClient({
@@ -26,7 +26,15 @@ export default function configureApi() {
                 variables: { user }
             })
             return transformRepos(response)
-        }
+        },
+
+        async requestIssue(user, repo, number) {
+            const response = await client.query({
+                query: queryIssue,
+                variables: { user, repo, number }
+            })
+            return transformIssue(response)
+        },
     }
 
     return api
