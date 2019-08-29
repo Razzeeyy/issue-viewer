@@ -15,15 +15,13 @@ export function getInputRepo(state) {
     return fromInput.getInputRepo(state.input)
 }
 
-export function getIssues(state) {
-    const inputUser = getInputUser(state)
-    const inputRepo = getInputRepo(state)
-    return fromEntities.getIssuesForRepoByOwnerAndName(state.entities, inputUser, inputRepo)
-}
-
 export function getRepoHints(state) {
     const inputUser = getInputUser(state)
     return fromEntities.getReposByOwner(state.entities, inputUser)
+}
+
+export function getIssuesForRepoByOwnerAndName(state, user, name) {
+    return fromEntities.getIssuesForRepoByOwnerAndName(state.entities, user, name)
 }
 
 export function getIssueByNumberFromRepo(state, user, repo, number) {

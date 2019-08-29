@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import RepoSearch from '../presentational/RepoSearch'
 import { getInputUser, getInputRepo, getRepoHints } from '../../reducers'
 import { actionInputUser, actionInputRepo, actionInputSearch } from '../../actions'
 
-export default function RepoSearchContainer(props) {
+function RepoSearchContainer({ history }) {
     const user = useSelector(getInputUser)
     const repo = useSelector(getInputRepo)
     const repos = useSelector(getRepoHints)
@@ -18,10 +19,10 @@ export default function RepoSearchContainer(props) {
         (repo) => dispatch(actionInputRepo(repo)),
         [dispatch]
     )
-    const handleClickSearch = useCallback(
-        () => dispatch(actionInputSearch()),
-        [dispatch]
-    )
+    const handleClickSearch = () => {
+        history.push(`/${user}/${repo}`)
+        return dispatch(actionInputSearch())
+    }
 
     return (
         <RepoSearch
@@ -34,3 +35,5 @@ export default function RepoSearchContainer(props) {
         />
     )
 }
+
+export default withRouter(RepoSearchContainer)

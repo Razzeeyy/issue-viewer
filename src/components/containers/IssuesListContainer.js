@@ -1,14 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
-import { getIssues, getInputUser, getInputRepo } from '../../reducers'
+import { getIssuesForRepoByOwnerAndName } from '../../reducers'
+import { actionRequestIssues } from '../../actions';
 
-function IssuesListContainer({ history }) {
-    const issues = useSelector(getIssues)
-    const user = useSelector(getInputUser)
-    const repo = useSelector(getInputRepo)
+function IssuesListContainer({ match, history }) {
+    const user = match.params.user
+    const repo = match.params.repo
+    const issues = useSelector(state => getIssuesForRepoByOwnerAndName(state, user, repo))
+
+    const dispatch = useDispatch()
+    useEffect(
+        () => {
+            dispatch(actionRequestIssues(user, repo))
+        },
+        [dispatch, user, repo]
+    )
 
     return (
         <IssuesList

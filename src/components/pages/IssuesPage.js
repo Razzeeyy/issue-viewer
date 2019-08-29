@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import IssueViewContainer from '../containers/IssueViewContainer'
+import IssuesListContainer from '../containers/IssuesListContainer'
 
-export default function DetailsPage(props) {
+export default function IssuesPage(props) {
     return (
         <div>
             <Link to="/">Back to main</Link>
-            <IssueViewContainer />
+            <IssuesListContainer />
         </div>
     )
 }

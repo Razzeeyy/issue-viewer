@@ -25,6 +25,12 @@ export function actionInputSearch() {
     return action(constants.ACTION_INPUT_SEARCH)
 }
 
+export function actionRequestIssues(user, repo) {
+    return action(constants.ACTION_REQUEST_ISSUES, {
+        user, repo
+    })
+}
+
 export function actionFetchIssues() {
     return action(constants.ACTION_FETCH_ISSUES)
 }

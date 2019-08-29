@@ -1,11 +1,11 @@
 import { all } from 'redux-saga/effects'
-import { watchInputUser, watchInputSearch } from './input'
-import { watchRequestIssue } from './requests'
+import { watchInputUser } from './input'
+import { watchRequestIssue, watchRequestIssues } from './requests'
 
 export default function* rootSaga(api) {
     yield all([
         watchInputUser(api),
-        watchInputSearch(api),
+        watchRequestIssues(api),
         watchRequestIssue(api)
     ])
 }
