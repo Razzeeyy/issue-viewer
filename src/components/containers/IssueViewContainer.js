@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import IssueView from '../presentational/IssueView'
 import { getIssueByNumberFromRepo } from '../../reducers'
-import { actionRequestIssue } from '../../actions';
+import { actionRequestIssue, actionInputUser, actionInputRepo } from '../../actions';
 
 function IssueViewContainer({ match, history }) {
     const user = match.params.user
@@ -14,6 +14,8 @@ function IssueViewContainer({ match, history }) {
     const dispatch = useDispatch()
     useEffect(
         () => {
+            dispatch(actionInputUser(user))
+            dispatch(actionInputRepo(repo))
             dispatch(actionRequestIssue(user, repo, number))
         },
         [dispatch, user, repo, number]

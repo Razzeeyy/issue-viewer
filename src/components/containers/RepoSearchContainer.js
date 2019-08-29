@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import RepoSearch from '../presentational/RepoSearch'
+import RepoHintsList from '../presentational/RepoHintsList';
 import { getInputUser, getInputRepo, getRepoHints } from '../../reducers'
 import { actionInputUser, actionInputRepo } from '../../actions'
 
@@ -16,16 +17,23 @@ function RepoSearchContainer({ history }) {
     const handleClickSearch = () => {
         history.push(`/${user}/${repo}`)
     }
+    const handleClickRepoHint = (repo) => {
+        handleChangeRepo(repo)
+        history.push(`/${user}/${repo}`)
+    }
 
     return (
-        <RepoSearch
-            user={user}
-            repo={repo}
-            repos={repos}
-            onChangeUser={handleChangeUser}
-            onChangeRepo={handleChangeRepo}
-            onClickSearch={handleClickSearch}
-        />
+        <>
+            <RepoSearch
+                user={user}
+                repo={repo}
+                repos={repos}
+                onChangeUser={handleChangeUser}
+                onChangeRepo={handleChangeRepo}
+                onClickSearch={handleClickSearch}
+            />
+            <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
+        </>
     )
 }
 

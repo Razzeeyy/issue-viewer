@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
 import { getIssuesForRepoByOwnerAndName } from '../../reducers'
-import { actionRequestIssues } from '../../actions';
+import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
 
 function IssuesListContainer({ match, history }) {
     const user = match.params.user
@@ -14,6 +14,8 @@ function IssuesListContainer({ match, history }) {
     const dispatch = useDispatch()
     useEffect(
         () => {
+            dispatch(actionInputUser(user))
+            dispatch(actionInputRepo(repo))
             dispatch(actionRequestIssues(user, repo))
         },
         [dispatch, user, repo]

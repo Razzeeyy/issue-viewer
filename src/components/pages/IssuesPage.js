@@ -6,7 +6,7 @@ import IssuesListContainer from '../containers/IssuesListContainer'
 export default function IssuesPage(props) {
     return (
         <div>
-            <Link to="/">Back to main</Link>
+            <Link to="/">Go back</Link>
             <IssuesListContainer />
         </div>
     )
