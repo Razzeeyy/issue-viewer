@@ -21,10 +21,6 @@ export function actionInputRepo(repo) {
     return action(constants.ACTION_INPUT_REPO, repo)
 }
 
-export function actionInputSearch() {
-    return action(constants.ACTION_INPUT_SEARCH)
-}
-
 export function actionRequestIssues(user, repo) {
     return action(constants.ACTION_REQUEST_ISSUES, {
         user, repo

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -18,13 +18,8 @@ function IssueViewContainer({ match, history }) {
         },
         [dispatch, user, repo, number]
     )
-
-    const getIssue = useCallback(
-        (state) => getIssueByNumberFromRepo(state, user, repo, number),
-        [user, repo, number]
-    )
-
-    const issue = useSelector(getIssue)
+    
+    const issue = useSelector(state => getIssueByNumberFromRepo(state, user, repo, number))
 
     return (
         <IssueView
