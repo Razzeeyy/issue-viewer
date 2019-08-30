@@ -10,6 +10,7 @@ export const queryIssues = gql`
             }
             issues(last: 100) {
                 edges {
+                    cursor
                     node {
                         id
                         number
