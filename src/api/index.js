@@ -13,10 +13,10 @@ export default function configureApi() {
     })
     
     const api = {
-        async requestIssues(user, repo) {
+        async requestIssues(user, repo, cursor) {
             const repsonse = await client.query({
                 query: queryIssues,
-                variables: { user, repo }
+                variables: { user, repo, cursor }
             })
             return transformIssues(repsonse)
         },

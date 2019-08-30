@@ -6,8 +6,10 @@ export function transformIssues(response) {
     const responseRepo = response.data.repository
     const transformedRepo = {
         ...responseRepo,
-        cursor: responseRepo.issues.edges.length ? responseRepo.issues.edges[0].cursor : null,
-        issues: responseRepo.issues.edges.map(el => el.node)
+        issues: responseRepo.issues.edges.map(el => ({
+            ...el.node,
+            _cursor: el.cursor
+        }))
     }
     return normalize(transformedRepo, queryIssuesSchema)
 }

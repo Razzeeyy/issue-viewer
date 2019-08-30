@@ -1,14 +1,14 @@
 import gql from 'graphql-tag'
 
 export const queryIssues = gql`
-    query Issues($user: String!, $repo: String!) {
+    query Issues($user: String!, $repo: String!, $cursor: String) {
         repository(owner: $user, name: $repo) {
             id
             name
             owner {
                 login
             }
-            issues(last: 100) {
+            issues(first: 100, after: $cursor, states: [OPEN], orderBy: { field: UPDATED_AT, direction: DESC }) {
                 edges {
                     cursor
                     node {
@@ -16,6 +16,7 @@ export const queryIssues = gql`
                         number
                         title
                         body
+                        updatedAt
                         author {
                             login
                             avatarUrl
