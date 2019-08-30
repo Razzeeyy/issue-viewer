@@ -21,9 +21,9 @@ export function actionInputRepo(repo) {
     return action(constants.ACTION_INPUT_REPO, repo)
 }
 
-export function actionRequestIssues(user, repo) {
+export function actionRequestIssues(user, repo, cursor) {
     return action(constants.ACTION_REQUEST_ISSUES, {
-        user, repo
+        user, repo, cursor
     })
 }
 

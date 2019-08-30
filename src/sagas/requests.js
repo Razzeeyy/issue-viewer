@@ -23,12 +23,12 @@ export function* watchRequestIssues(api, action) {
     yield takeLatest([ACTION_REQUEST_ISSUES], requestIssues, api)
 }
 
-function* requestIssues(api, { payload: { user, repo } }) {
+function* requestIssues(api, { payload: { user, repo, cursor } }) {
     yield delay(300)
     if(user && repo) {
         try {
             yield put(actions.actionFetchIssues())
-            const response = yield call(api.requestIssues, user, repo)
+            const response = yield call(api.requestIssues, user, repo, cursor)
             yield put(actions.actionFetchIssuesOk(response))
         } catch(err) {
             yield put(actions.actionFetchIssuesFail(err))

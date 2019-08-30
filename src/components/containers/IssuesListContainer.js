@@ -21,11 +21,19 @@ function IssuesListContainer({ match, history }) {
         [dispatch, user, repo]
     )
 
+    const lastCursor = issues.length && issues[issues.length-1]._cursor
+    const handleClickLoadMore = () => dispatch(actionRequestIssues(user, repo, lastCursor))
+
     return (
-        <IssuesList
-            issues={issues.length ? issues : [{ id: 0, title: 'No issues'}]}
-            onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}
-        />
+        <>
+            <IssuesList
+                issues={issues.length ? issues : [{ id: 0, title: 'No issues'}]}
+                onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}
+            />
+            <button onClick={handleClickLoadMore}>
+                More
+            </button>
+        </>
     )
 }
 
