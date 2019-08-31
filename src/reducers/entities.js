@@ -1,19 +1,44 @@
-import merge from 'lodash/merge'
+import { combineReducers } from 'redux'
 
-const defaultState = {
-    users: {},
-    repos: {},
-    issues: {}
-}
-
-export default function entitiesReducer(state=defaultState, {payload, error}) {
-    //TODO: FIXME: this may not trigger proper re-renders when used with selectors, consider splitting into subreducers
-    if(!error && payload && payload.entities) {
-        return merge({}, state, payload.entities)
+function defaultMerger(state, newState) {
+    return {
+        ...state,
+        ...newState
     }
-    return state
 }
 
+function reposMerger(state, newState) {
+    console.log("repos ", state)
+    return Object.values(newState).reduce((state, repo) => {
+        state[repo.id] = {
+            ...state[repo.id],
+            ...repo,
+            issues: [
+                ...(state[repo.id] && state[repo.id].issues) || [],
+                ...repo.issues || []
+            ]
+        }
+        return state
+    }, state)
+}
+
+function createEntityReducer(name, merger=defaultMerger) {
+    return (state={}, { payload, error }) => {
+        if(!error && payload && payload.entities) {
+            const entities = payload.entities[name]
+            if(entities) {
+                return merger(state, entities)
+            }
+        }
+        return state
+    }
+}
+
+export default combineReducers({
+    users: createEntityReducer('users'),
+    repos: createEntityReducer('repos', reposMerger),
+    issues: createEntityReducer('issues')
+})
 
 export function getRepos(state) {
     return state.repos || {}
