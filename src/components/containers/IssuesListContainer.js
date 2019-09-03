@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
-import { getIssuesForRepoByOwnerAndName } from '../../reducers'
+import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository } from '../../reducers'
 import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
 
 function IssuesListContainer({ match, history }) {
     const user = match.params.user
     const repo = match.params.repo
     const issues = useSelector(state => getIssuesForRepoByOwnerAndName(state, user, repo))
+    const lastCursor = useSelector(state => getRecentCursorForRepository(state, user, repo))
 
     const dispatch = useDispatch()
     useEffect(
@@ -20,8 +21,6 @@ function IssuesListContainer({ match, history }) {
         },
         [dispatch, user, repo]
     )
-
-    const lastCursor = issues.length && issues[issues.length-1]._cursor
     const handleClickLoadMore = () => dispatch(actionRequestIssues(user, repo, lastCursor))
 
     return (

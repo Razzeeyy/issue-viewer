@@ -27,3 +27,7 @@ export function getIssuesForRepoByOwnerAndName(state, user, name) {
 export function getIssueByNumberFromRepo(state, user, repo, number) {
     return fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number)
 }
+
+export function getRecentCursorForRepository(state, user, repo) {
+    return fromEntities.getRecentCursorForRepository(state.entities, user, repo)
+}

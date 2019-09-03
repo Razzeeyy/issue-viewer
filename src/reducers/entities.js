@@ -79,3 +79,9 @@ export function getIssueByNumberFromRepo(state, user, repo, number) {
     const matching = issues.filter(el => el.number === number)
     return matching.length ? matching[0] : {}
 }
+
+export function getRecentCursorForRepository(state, user, repo) {
+    const issues = getIssuesForRepoByOwnerAndName(state, user, repo)
+    const lastCursor = issues.length ? issues[issues.length-1]._cursor : null
+    return lastCursor
+}
