@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -21,17 +21,20 @@ function IssuesListContainer({ match, history }) {
         },
         [dispatch, user, repo]
     )
-    const handleClickLoadMore = () => dispatch(actionRequestIssues(user, repo, lastCursor))
+
+    const handleScrolledToEnd = useCallback(
+        () => dispatch(actionRequestIssues(user, repo, lastCursor)),
+        [dispatch, user, repo, lastCursor]
+    )
 
     return (
         <>
             <IssuesList
                 issues={issues.length ? issues : [{ id: 0, title: 'No issues'}]}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}
+                onEndReached={handleScrolledToEnd}
+                endOffset={25}
             />
-            <button onClick={handleClickLoadMore}>
-                More
-            </button>
         </>
     )
 }

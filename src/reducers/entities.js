@@ -8,7 +8,6 @@ function defaultMerger(state, newState) {
 }
 
 function reposMerger(state, newState) {
-    console.log("repos ", state)
     return Object.values(newState).reduce((state, repo) => {
         state[repo.id] = {
             ...state[repo.id],

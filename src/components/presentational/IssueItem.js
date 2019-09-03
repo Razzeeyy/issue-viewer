@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-export default function IssueItem({ issue, onClick }) {
+function IssueItem({ issue, onClick }, ref) {
     return (
-        <li onClick={() => onClick(issue.number)}>
+        <li ref={ref} onClick={() => onClick(issue.number)}>
             {issue.title}
         </li>
     )
 }
+
+export default forwardRef(IssueItem)
