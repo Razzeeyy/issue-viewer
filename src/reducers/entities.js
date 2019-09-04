@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 
+import { deduplicate } from '../utils'
+
 function defaultMerger(state, newState) {
     return {
         ...state,
@@ -12,10 +14,10 @@ function reposMerger(state, newState) {
         state[repo.id] = {
             ...state[repo.id],
             ...repo,
-            issues: [
+            issues: deduplicate([
                 ...(state[repo.id] && state[repo.id].issues) || [],
                 ...repo.issues || []
-            ]
+            ])
         }
         return state
     }, state)
