@@ -10,16 +10,16 @@ function* requestIssue(api, { payload: { user, repo, number } }) {
     yield delay(300)
     if(user && repo) {
         try {
-            yield put(actions.actionFetchIssue())
+            yield put(actions.actionFetchIssue(user, repo, number))
             const response = yield call(api.requestIssue, user, repo, number)
-            yield put(actions.actionFetchIssueOk(response))
+            yield put(actions.actionFetchIssueOk(response, user, repo, number))
         } catch(err) {
-            yield put(actions.actionFetchIssueFail(err))
+            yield put(actions.actionFetchIssueFail(err, user, repo, number))
         }
     }
 }
 
-export function* watchRequestIssues(api, action) {
+export function* watchRequestIssues(api) {
     yield takeLatest([ACTION_REQUEST_ISSUES], requestIssues, api)
 }
 
@@ -27,11 +27,11 @@ function* requestIssues(api, { payload: { user, repo, cursor } }) {
     yield delay(300)
     if(user && repo) {
         try {
-            yield put(actions.actionFetchIssues())
+            yield put(actions.actionFetchIssues(user, repo))
             const response = yield call(api.requestIssues, user, repo, cursor)
-            yield put(actions.actionFetchIssuesOk(response))
+            yield put(actions.actionFetchIssuesOk(response, user, repo))
         } catch(err) {
-            yield put(actions.actionFetchIssuesFail(err))
+            yield put(actions.actionFetchIssuesFail(err, user, repo))
         }
     }
 }

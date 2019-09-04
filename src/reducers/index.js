@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import input, * as fromInput from './input'
 import entities, * as fromEntities from './entities'
+import loading, * as fromLoading from './loading'
 
 export default combineReducers({
     input,
-    entities
+    entities,
+    loading
 })
 
 export function getInputUser(state) {
@@ -30,4 +32,8 @@ export function getIssueByNumberFromRepo(state, user, repo, number) {
 
 export function getRecentCursorForRepository(state, user, repo) {
     return fromEntities.getRecentCursorForRepository(state.entities, user, repo)
+}
+
+export function getIsLoadingRepos(state, user) {
+    return fromLoading.getIsLoadingRepos(state.loading, user)
 }

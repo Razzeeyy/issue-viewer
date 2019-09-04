@@ -27,28 +27,40 @@ export function actionRequestIssues(user, repo, cursor) {
     })
 }
 
-export function actionFetchIssues() {
-    return action(constants.ACTION_FETCH_ISSUES)
+export function actionFetchIssues(user, repo) {
+    return action(constants.ACTION_FETCH_ISSUES, null, false, {
+        user, repo
+    })
 }
 
-export function actionFetchIssuesOk(data) {
-    return action(constants.ACTION_FETCH_ISSUES_OK, data)
+export function actionFetchIssuesOk(data, user, repo) {
+    return action(constants.ACTION_FETCH_ISSUES_OK, data, false, {
+        user, repo
+    })
 }
 
-export function actionFetchIssuesFail(error) {
-    return action(constants.ACTION_FETCH_ISSUES_FAIL, error, true)
+export function actionFetchIssuesFail(error, user, repo) {
+    return action(constants.ACTION_FETCH_ISSUES_FAIL, error, true, {
+        user, repo
+    })
 }
 
-export function actionFetchRepos() {
-    return action(constants.ACTION_FETCH_REPOS)
+export function actionFetchRepos(user) {
+    return action(constants.ACTION_FETCH_REPOS, null, false, {
+        user
+    })
 }
 
-export function actionFetchReposOk(data) {
-    return action(constants.ACTION_FETCH_REPOS_OK, data)
+export function actionFetchReposOk(data, user) {
+    return action(constants.ACTION_FETCH_REPOS_OK, data, false, {
+        user
+    })
 }
 
-export function actionFetchReposFail(error) {
-    return action(constants.ACTION_FETCH_REPOS_FAIL, error, true)
+export function actionFetchReposFail(error, user) {
+    return action(constants.ACTION_FETCH_REPOS_FAIL, error, true, {
+        user
+    })
 }
 
 export function actionRequestIssue(user, repo, number) {
@@ -57,14 +69,20 @@ export function actionRequestIssue(user, repo, number) {
     })
 }
 
-export function actionFetchIssue() {
-    return action(constants.ACTION_FETCH_ISSUE)
+export function actionFetchIssue(user, repo, number) {
+    return action(constants.ACTION_FETCH_ISSUE, null, false, {
+        user, repo, number
+    })
 }
 
-export function actionFetchIssueOk(data) {
-    return action(constants.ACTION_FETCH_ISSUE_OK, data)
+export function actionFetchIssueOk(data, user, repo, number) {
+    return action(constants.ACTION_FETCH_ISSUE_OK, data, false, {
+        user, repo, number
+    })
 }
 
-export function actionFetchIssueFail(error) {
-    return action(constants.ACTION_FETCH_ISSUE_FAIL, error, true)
+export function actionFetchIssueFail(error, user, repo, number) {
+    return action(constants.ACTION_FETCH_ISSUE_FAIL, error, true, {
+        user, repo, number
+    })
 }

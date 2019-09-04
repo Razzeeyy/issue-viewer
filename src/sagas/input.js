@@ -12,11 +12,11 @@ function* requestRepos(api) {
     const user = yield select(getInputUser)
     if(user) {
         try {
-            yield put(actions.actionFetchRepos())
+            yield put(actions.actionFetchRepos(user))
             const response = yield call(api.requestRepos, user)
-            yield put(actions.actionFetchReposOk(response))
+            yield put(actions.actionFetchReposOk(response, user))
         } catch(err) {
-            yield put(actions.actionFetchReposFail(err))
+            yield put(actions.actionFetchReposFail(err, user))
         }
     }
 }

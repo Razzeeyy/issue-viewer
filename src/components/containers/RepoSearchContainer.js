@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import RepoSearch from '../presentational/RepoSearch'
 import RepoHintsList from '../presentational/RepoHintsList';
-import { getInputUser, getInputRepo, getRepoHints } from '../../reducers'
+import { getInputUser, getInputRepo, getRepoHints, getIsLoadingRepos } from '../../reducers'
 import { actionInputUser, actionInputRepo } from '../../actions'
 
 function RepoSearchContainer({ history }) {
@@ -21,6 +21,7 @@ function RepoSearchContainer({ history }) {
         handleChangeRepo(repo)
         history.push(`/${user}/${repo}`)
     }
+    const isLoading = useSelector((state) => getIsLoadingRepos(state, user))
 
     return (
         <>
@@ -32,6 +33,7 @@ function RepoSearchContainer({ history }) {
                 onChangeRepo={handleChangeRepo}
                 onClickSearch={handleClickSearch}
             />
+            <div>loading {isLoading.toString()}</div>
             <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
         </>
     )
