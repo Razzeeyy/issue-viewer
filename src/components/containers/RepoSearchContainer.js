@@ -21,7 +21,7 @@ function RepoSearchContainer({ history }) {
         handleChangeRepo(repo)
         history.push(`/${user}/${repo}`)
     }
-    const isLoading = useSelector((state) => getIsLoadingRepos(state, user))
+    const isLoadingRepos = useSelector(state => getIsLoadingRepos(state, user))
 
     return (
         <>
@@ -33,7 +33,7 @@ function RepoSearchContainer({ history }) {
                 onChangeRepo={handleChangeRepo}
                 onClickSearch={handleClickSearch}
             />
-            <div>loading {isLoading.toString()}</div>
+            <div>{'loading '+isLoadingRepos}</div>
             <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
         </>
     )

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
-import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository } from '../../reducers'
+import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository, getIsLoadingIssues } from '../../reducers'
 import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
 
 function IssuesListContainer({ match, history }) {
@@ -27,10 +27,13 @@ function IssuesListContainer({ match, history }) {
         [dispatch, user, repo, lastCursor]
     )
 
+    const isLoadingIssues = useSelector(state => getIsLoadingIssues(state, user, repo))
+
     return (
         <>
+            <div>{'Loading '+isLoadingIssues}</div>
             <IssuesList
-                issues={issues.length ? issues : [{ id: 0, title: 'No issues'}]}
+                issues={issues || []}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}
                 onEndReached={handleScrolledToEnd}
                 endOffset={25}

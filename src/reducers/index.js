@@ -37,3 +37,11 @@ export function getRecentCursorForRepository(state, user, repo) {
 export function getIsLoadingRepos(state, user) {
     return fromLoading.getIsLoadingRepos(state.loading, user)
 }
+
+export function getIsLoadingIssues(state, user, repo) {
+    return fromLoading.getIsLoadingIssues(state.loading, user, repo)
+}
+
+export function getIsLoadingIssue(state, user, repo, number) {
+    return fromLoading.getIsLoadingIssue(state.loading, user, repo, number)
+}
