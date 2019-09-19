@@ -16,11 +16,15 @@ function RepoSearchContainer({ history }) {
     const handleChangeUser = (user) => dispatch(actionInputUser(user))
     const handleChangeRepo = (repo) => dispatch(actionInputRepo(repo))
     const handleClickSearch = () => {
-        history.push(`/${user}/${repo}`)
+        if (user && repo) {
+            history.push(`/${user}/${repo}`)
+        }
     }
     const handleClickRepoHint = (repo) => {
         handleChangeRepo(repo)
-        history.push(`/${user}/${repo}`)
+        if (user && repo) {
+            history.push(`/${user}/${repo}`)
+        }
     }
     const isLoadingRepos = useSelector(state => getIsLoadingRepos(state, user))
 
