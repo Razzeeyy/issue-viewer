@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
+import LoadingIndicator from '../presentational/LoadingIndicator'
 import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository, getIsLoadingIssues } from '../../reducers'
 import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
 
@@ -31,7 +32,7 @@ function IssuesListContainer({ match, history }) {
 
     return (
         <>
-            <div>{'Loading '+isLoadingIssues}</div>
+            <LoadingIndicator isLoading={isLoadingIssues} />
             <IssuesList
                 issues={issues || []}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssueView from '../presentational/IssueView'
+import LoadingIndicator from '../presentational/LoadingIndicator'
 import { getIssueByNumberFromRepo, getIsLoadingIssue } from '../../reducers'
 import { actionRequestIssue, actionInputUser, actionInputRepo } from '../../actions';
 
@@ -26,7 +27,7 @@ function IssueViewContainer({ match, history }) {
 
     return (
         <>
-            <div>{'loading '+isLoadingIssue}</div>
+            <LoadingIndicator isLoading={isLoadingIssue} />
             <IssueView
                 issue={issue}
             />

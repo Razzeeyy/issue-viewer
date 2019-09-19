@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import RepoSearch from '../presentational/RepoSearch'
-import RepoHintsList from '../presentational/RepoHintsList';
+import LoadingIndicator from '../presentational/LoadingIndicator'
+import RepoHintsList from '../presentational/RepoHintsList'
 import { getInputUser, getInputRepo, getRepoHints, getIsLoadingRepos } from '../../reducers'
 import { actionInputUser, actionInputRepo } from '../../actions'
 
@@ -33,7 +34,7 @@ function RepoSearchContainer({ history }) {
                 onChangeRepo={handleChangeRepo}
                 onClickSearch={handleClickSearch}
             />
-            <div>{'loading '+isLoadingRepos}</div>
+            <LoadingIndicator isLoading={isLoadingRepos} />
             <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
         </>
     )
