@@ -30,6 +30,7 @@ function RepoSearchContainer({ history }) {
 
     return (
         <>
+            <LoadingIndicator isLoading={isLoadingRepos} />
             <RepoSearch
                 user={user}
                 repo={repo}
@@ -38,7 +39,6 @@ function RepoSearchContainer({ history }) {
                 onChangeRepo={handleChangeRepo}
                 onClickSearch={handleClickSearch}
             />
-            <LoadingIndicator isLoading={isLoadingRepos} />
             <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
         </>
     )

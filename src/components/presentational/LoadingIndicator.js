@@ -1,6 +1,6 @@
 import React from 'react'
 
-const style = {
+const loadingIndicatorStyle = {
     position: 'fixed',
     left: 0,
     top: 0,
@@ -13,7 +13,7 @@ const style = {
 export default function LoadingIndicator({ isLoading }) {
     return (
         <>
-            {isLoading && <div style={style}></div>}
+            {isLoading && <div style={loadingIndicatorStyle}></div>}
         </>
     )
 }
