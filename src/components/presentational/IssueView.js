@@ -1,4 +1,5 @@
 import React from 'react'
+import Markdown from 'react-markdown'
 import './IssueView.css'
 
 export default function IssueView({ issue }) {
@@ -11,7 +12,7 @@ export default function IssueView({ issue }) {
                 {issue.author ? issue.author : 'Unknown author'}
             </div>
             <div className="issue-view__body">
-                {issue.body || 'No body'}
+                <Markdown source={issue.body || 'No body'} />
             </div>
         </div>
     )
