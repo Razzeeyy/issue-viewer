@@ -1,0 +1,20 @@
+.repo-hints-list {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    margin: 0;
+    margin-top: 0.75em;
+    padding: 0;
+}
+
+.repo-hints-list__item {
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: cornflowerblue;
+    border: 1px solid black;
+    margin: 0;
+    margin-right: 0.5em;
+    margin-bottom: 0.75em;
+    padding: 0.25em 0.5em; 
+}

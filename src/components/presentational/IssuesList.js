@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import IssueItem from './IssueItem'
+import './IssuesList.css'
 
 export default function IssuesList({ issues, onIssueClick, onEndReached, endOffset=0 }) {
     const [ref, inView] = useInView({
@@ -18,7 +19,7 @@ export default function IssuesList({ issues, onIssueClick, onEndReached, endOffs
     )
 
     return (
-        <ul>
+        <ul className="issues-list">
             {
                 issues.map((issue, index) => (<IssueItem
                         key={issue.id}

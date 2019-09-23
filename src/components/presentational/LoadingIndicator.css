@@ -1,0 +1,10 @@
+.loading-indicator {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: black;
+}

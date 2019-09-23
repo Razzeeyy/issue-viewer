@@ -1,0 +1,29 @@
+.repo-search {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.repo-search__input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 1.5em;
+    border: 1p solid black;
+    font-size: 18px;
+    margin: 0.5em 0;
+    padding: 0;
+    padding-left: 0.25em;
+}
+
+.repo-search__submit {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 2em;
+    border: 1px solid black;
+    font-size: 18px;
+    background: lightgray;
+}
