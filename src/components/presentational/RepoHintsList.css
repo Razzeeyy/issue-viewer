@@ -18,3 +18,7 @@
     margin-bottom: 0.75em;
     padding: 0.25em 0.5em; 
 }
+
+.repo-hints-list__item:last-child {
+    margin-right: 0;
+}

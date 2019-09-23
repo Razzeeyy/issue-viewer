@@ -1,7 +1,7 @@
 .repo-search {
     box-sizing: border-box;
     display: block;
-    width: 100%;
+    width: auto;
     margin: 0;
     padding: 0;
 }
@@ -13,7 +13,8 @@
     height: 1.5em;
     border: 1p solid black;
     font-size: 18px;
-    margin: 0.5em 0;
+    margin: 0;
+    margin-bottom: 0.5em;
     padding: 0;
     padding-left: 0.25em;
 }
@@ -26,4 +27,19 @@
     border: 1px solid black;
     font-size: 18px;
     background: lightgray;
+}
+
+@media (min-width: 800px) {
+    .repo-search__input {
+        display: inline-block;
+        width: 30%;
+        margin-right: 0.5em;
+        height: 2em;
+    }
+
+    .repo-search__submit {
+        display: inline-block;
+        width: 20%;
+        height: 2em;
+    }
 }

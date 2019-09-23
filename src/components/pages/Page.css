@@ -1,0 +1,16 @@
+.page-container {
+    box-sizing: border-box;
+    width: auto;
+    min-height: 100%;
+    margin: 0;
+    padding: 0 10px;
+    padding-top: 5px;
+    background: lightpink;
+}
+
+@media(min-width: 800px) {
+    .page-container {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
