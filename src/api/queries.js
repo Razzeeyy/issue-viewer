@@ -15,11 +15,9 @@ export const queryIssues = gql`
                         id
                         number
                         title
-                        body
                         updatedAt
                         author {
                             login
-                            avatarUrl
                         }
                     }
                 }
@@ -32,7 +30,6 @@ export const queryRepos = gql`
     query Repos($user: String!) {
         user(login: $user) {
             login
-            avatarUrl
             repositories(last: 100) {
                 edges {
                     node {
@@ -64,6 +61,7 @@ export const queryIssue = gql`
                 author {
                     login
                     avatarUrl
+                    url
                 }
             }
         }
