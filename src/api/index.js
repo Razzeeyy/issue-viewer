@@ -11,10 +11,11 @@ export default function configureApi() {
             Authorization: `bearer ${token}`
         }
     })
-    
+
     const api = {
         async requestIssues(user, repo, cursor) {
             const repsonse = await client.query({
+                fetchPolicy: 'no-cache',
                 query: queryIssues,
                 variables: { user, repo, cursor }
             })
@@ -23,6 +24,7 @@ export default function configureApi() {
 
         async requestRepos(user) {
             const response = await client.query({
+                fetchPolicy: 'no-cache',
                 query: queryRepos,
                 variables: { user }
             })
@@ -31,6 +33,7 @@ export default function configureApi() {
 
         async requestIssue(user, repo, number) {
             const response = await client.query({
+                fetchPolicy: 'no-cache',
                 query: queryIssue,
                 variables: { user, repo, number }
             })
