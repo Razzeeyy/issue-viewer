@@ -53,6 +53,10 @@ export function getUsers(state) {
     return state.users || {}
 }
 
+export function getUserData(state, user) {
+    return getUsers(state)[user] || {}
+}
+
 export function getRepoByOwnerAndName(state, owner, name) {
     const repos = getRepos(state)
     const matching = Object.values(repos).filter(
@@ -75,10 +79,17 @@ export function getReposByOwner(state, owner) {
     return matching
 }
 
-export function getIssueByNumberFromRepo(state, user, repo, number) {
+export function getIssueByNumberFromRepo(state, user, repo, number, withUserData=false) {
     const issues = getIssuesForRepoByOwnerAndName(state, user, repo)
     const matching = issues.filter(el => el.number === number)
-    return matching.length ? matching[0] : {}
+    const issue = matching.length ? matching[0] : {}
+    if (!withUserData) {
+        return issue
+    }
+    return {
+        ...issue,
+        author: getUserData(state, issue.author)
+    }
 }
 
 export function getRecentCursorForRepository(state, user, repo) {

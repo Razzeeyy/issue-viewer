@@ -9,7 +9,10 @@ export default function IssueView({ issue }) {
                 {issue.title || 'Untitled'}
             </h1>
             <div className="issue-view__author">
-                {issue.author ? issue.author : 'Unknown author'}
+                <img src={issue.author.avatarUrl} alt="" width={64} height={64}/>
+                <a href={issue.author.url} target="_blank" rel="noopener noreferrer">
+                    {issue.author.login || 'Unknown author'}
+                </a>
             </div>
             <div className="issue-view__body">
                 <Markdown source={issue.body || 'No body'} />

@@ -22,7 +22,7 @@ function IssueViewContainer({ match, history }) {
         [dispatch, user, repo, number]
     )
     
-    const issue = useSelector(state => getIssueByNumberFromRepo(state, user, repo, number))
+    const issue = useSelector(state => getIssueByNumberFromRepo(state, user, repo, number, true))
     const isLoadingIssue = useSelector(state => getIsLoadingIssue(state, user, repo, number))
 
     return (
