@@ -15,6 +15,7 @@ export const queryIssues = gql`
                         id
                         number
                         title
+                        updatedAt
                         author {
                             login
                         }
