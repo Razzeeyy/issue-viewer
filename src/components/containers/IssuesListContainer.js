@@ -30,6 +30,7 @@ function IssuesListContainer({ match, history }) {
 
     const isLoadingIssues = useSelector(state => getIsLoadingIssues(state, user, repo))
 
+    //TODO: properly display when there is no issues
     return (
         <>
             <LoadingIndicator isLoading={isLoadingIssues} />

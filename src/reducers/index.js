@@ -23,10 +23,12 @@ export function getRepoHints(state) {
 }
 
 export function getIssuesForRepoByOwnerAndName(state, user, name) {
+    //TODO: sort by updated time
     return fromEntities.getIssuesForRepoByOwnerAndName(state.entities, user, name)
 }
 
 export function getIssueByNumberFromRepo(state, user, repo, number, withUserData) {
+    //TODO: move withUserData login here outside of the core reducer
     return fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number, withUserData)
 }
 

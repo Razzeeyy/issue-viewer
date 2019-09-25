@@ -28,6 +28,7 @@ function RepoSearchContainer({ history }) {
     }
     const isLoadingRepos = useSelector(state => getIsLoadingRepos(state, user))
 
+    //TODO show when user doesn't exist or has no repos
     return (
         <>
             <LoadingIndicator isLoading={isLoadingRepos} />

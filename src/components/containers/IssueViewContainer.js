@@ -25,6 +25,7 @@ function IssueViewContainer({ match, history }) {
     const issue = useSelector(state => getIssueByNumberFromRepo(state, user, repo, number, true))
     const isLoadingIssue = useSelector(state => getIsLoadingIssue(state, user, repo, number))
 
+    //TODO: handle a case where issue doesn't exist
     return (
         <>
             <LoadingIndicator isLoading={isLoadingIssue} />
