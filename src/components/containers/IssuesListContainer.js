@@ -10,7 +10,7 @@ import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../act
 function IssuesListContainer({ match, history }) {
     const user = match.params.user
     const repo = match.params.repo
-    const issues = useSelector(state => getIssuesForRepoByOwnerAndName(state, user, repo))
+    const issues = useSelector(state => getIssuesForRepoByOwnerAndName(state, user, repo, true))
     const lastCursor = useSelector(state => getRecentCursorForRepository(state, user, repo))
 
     const dispatch = useDispatch()

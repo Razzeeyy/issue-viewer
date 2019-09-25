@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import moment from 'moment'
 import input, * as fromInput from './input'
 import entities, * as fromEntities from './entities'
 import loading, * as fromLoading from './loading'
@@ -22,14 +23,18 @@ export function getRepoHints(state) {
     return fromEntities.getReposByOwner(state.entities, inputUser)
 }
 
-export function getIssuesForRepoByOwnerAndName(state, user, name) {
-    //TODO: sort by updated time
-    return fromEntities.getIssuesForRepoByOwnerAndName(state.entities, user, name)
+export function getIssuesForRepoByOwnerAndName(state, user, name, sorted=false) {
+    const issues = fromEntities.getIssuesForRepoByOwnerAndName(state.entities, user, name)
+    if (!sorted) {
+        return issues
+    }
+    const sortedIssues = issues.sort((a, b) => moment(a.updatedAt).isAfter(b.updatedAt) ? -1 : 1)
+    return sortedIssues;
 }
 
 export function getIssueByNumberFromRepo(state, user, repo, number, denormalizeAuthor=false) {
     const issue = fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number)
-    if (!denormalizeAuthor || !issue.author) {
+    if (!denormalizeAuthor) {
         return issue
     }
     return {
