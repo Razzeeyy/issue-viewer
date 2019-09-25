@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import { deduplicate } from '../utils'
 
+//TODO: FIXME: do proper recursive merge, don't overwrite some fields with undefined
 function defaultMerger(state, newState) {
     return {
         ...state,
