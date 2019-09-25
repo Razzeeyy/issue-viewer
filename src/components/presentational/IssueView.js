@@ -1,19 +1,26 @@
 import React from 'react'
 import Markdown from 'react-markdown'
+import moment from 'moment'
 import './IssueView.css'
 
 export default function IssueView({ issue }) {
+
+    const updateDate = moment(issue.updatedAt).calendar(null, {
+        sameElse: 'DD.MM.YYYY [at] h:m A'
+    })
+
     return (
         <div className="issue-view">
             <h1 className="issue-view__title">
                 {issue.title || 'Untitled'}
             </h1>
             <div className="issue-view__author">
-                <img src={issue.author.avatarUrl} alt="" width={64} height={64}/>
+                <img src={issue.author.avatarUrl} alt=""/>
                 <a href={issue.author.url} target="_blank" rel="noopener noreferrer">
                     {issue.author.login || 'Unknown author'}
                 </a>
             </div>
+            <div className="issue-view__updated-time">Updated: {updateDate}</div>
             <div className="issue-view__body">
                 <Markdown source={issue.body || 'No body'} />
             </div>
