@@ -135,6 +135,8 @@ export default function loadingReducer(state=defaultState, action) {
     }
 }
 
+//TODO: FIXME: add ability to check if ever tried loading something, would help fix false "No Something" flash when components render initially
+
 export function getIsLoadingRepos(state, user) {
     const userState = state[user]
     return userState ? userState.loadingRepos !== 0 : false

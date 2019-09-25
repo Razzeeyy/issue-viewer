@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import IssuesList from '../presentational/IssuesList'
+import Notice from '../presentational/Notice'
 import LoadingIndicator from '../presentational/LoadingIndicator'
 import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository, getIsLoadingIssues } from '../../reducers'
 import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
@@ -29,11 +30,13 @@ function IssuesListContainer({ match, history }) {
     )
 
     const isLoadingIssues = useSelector(state => getIsLoadingIssues(state, user, repo))
-
-    //TODO: properly display when there is no issues
+    
+    const displayNotice = !issues.length && !isLoadingIssues
+    
     return (
         <>
             <LoadingIndicator isLoading={isLoadingIssues} />
+            { displayNotice && <Notice text="No issues" /> }
             <IssuesList
                 issues={issues || []}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}

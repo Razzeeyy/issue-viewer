@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import RepoSearch from '../presentational/RepoSearch'
 import LoadingIndicator from '../presentational/LoadingIndicator'
 import RepoHintsList from '../presentational/RepoHintsList'
+import Notice from '../presentational/Notice'
 import { getInputUser, getInputRepo, getRepoHints, getIsLoadingRepos } from '../../reducers'
 import { actionInputUser, actionInputRepo } from '../../actions'
 
@@ -28,7 +29,8 @@ function RepoSearchContainer({ history }) {
     }
     const isLoadingRepos = useSelector(state => getIsLoadingRepos(state, user))
 
-    //TODO show when user doesn't exist or has no repos
+    const displayNotice = !repos.length && !isLoadingRepos
+
     return (
         <>
             <LoadingIndicator isLoading={isLoadingRepos} />
@@ -40,6 +42,7 @@ function RepoSearchContainer({ history }) {
                 onChangeRepo={handleChangeRepo}
                 onClickSearch={handleClickSearch}
             />
+            { displayNotice && <Notice text="No repos for this user" /> }
             <RepoHintsList repos={repos} onHintClicked={handleClickRepoHint} />
         </>
     )

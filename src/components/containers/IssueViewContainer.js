@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import IssueView from '../presentational/IssueView'
 import LoadingIndicator from '../presentational/LoadingIndicator'
+import Notice from '../presentational/Notice'
 import { getIssueByNumberFromRepo, getIsLoadingIssue } from '../../reducers'
 import { actionRequestIssue, actionInputUser, actionInputRepo } from '../../actions';
 
@@ -25,10 +26,12 @@ function IssueViewContainer({ match, history }) {
     const issue = useSelector(state => getIssueByNumberFromRepo(state, user, repo, number, true))
     const isLoadingIssue = useSelector(state => getIsLoadingIssue(state, user, repo, number))
 
-    //TODO: handle a case where issue doesn't exist
+    const displayNotice = !Object.keys(issue).length && !isLoadingIssue
+
     return (
         <>
             <LoadingIndicator isLoading={isLoadingIssue} />
+            { displayNotice && <Notice text="No issue" /> }
             <IssueView
                 issue={issue}
             />
