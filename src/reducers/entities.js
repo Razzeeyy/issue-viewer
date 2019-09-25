@@ -79,17 +79,10 @@ export function getReposByOwner(state, owner) {
     return matching
 }
 
-export function getIssueByNumberFromRepo(state, user, repo, number, withUserData=false) {
+export function getIssueByNumberFromRepo(state, user, repo, number) {
     const issues = getIssuesForRepoByOwnerAndName(state, user, repo)
     const matching = issues.filter(el => el.number === number)
-    const issue = matching.length ? matching[0] : {}
-    if (!withUserData) {
-        return issue
-    }
-    return {
-        ...issue,
-        author: getUserData(state, issue.author)
-    }
+    return matching.length ? matching[0] : {}
 }
 
 export function getRecentCursorForRepository(state, user, repo) {

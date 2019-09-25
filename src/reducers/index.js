@@ -27,9 +27,15 @@ export function getIssuesForRepoByOwnerAndName(state, user, name) {
     return fromEntities.getIssuesForRepoByOwnerAndName(state.entities, user, name)
 }
 
-export function getIssueByNumberFromRepo(state, user, repo, number, withUserData) {
-    //TODO: move withUserData login here outside of the core reducer
-    return fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number, withUserData)
+export function getIssueByNumberFromRepo(state, user, repo, number, denormalizeAuthor=false) {
+    const issue = fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number)
+    if (!denormalizeAuthor || !issue.author) {
+        return issue
+    }
+    return {
+        ...issue,
+        author: fromEntities.getUserData(state.entities, issue.author)
+    }
 }
 
 export function getRecentCursorForRepository(state, user, repo) {
