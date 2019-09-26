@@ -1,28 +1,5 @@
 import { combineReducers } from 'redux'
-
-import { deduplicate } from '../utils'
-
-//TODO: FIXME: do proper recursive merge, don't overwrite some fields with undefined
-function defaultMerger(state, newState) {
-    return {
-        ...state,
-        ...newState
-    }
-}
-
-function reposMerger(state, newState) {
-    return Object.values(newState).reduce((state, repo) => {
-        state[repo.id] = {
-            ...state[repo.id],
-            ...repo,
-            issues: deduplicate([
-                ...(state[repo.id] && state[repo.id].issues) || [],
-                ...repo.issues || []
-            ])
-        }
-        return state
-    }, state)
-}
+import { uniq, merge } from 'lodash'
 
 function createEntityReducer(name, merger=defaultMerger) {
     return (state={}, { payload, error }) => {
@@ -36,8 +13,33 @@ function createEntityReducer(name, merger=defaultMerger) {
     }
 }
 
+function defaultMerger(state, newState) {
+    return {
+        ...state,
+        ...newState
+    }
+}
+
+function usersMerger(state, newState) {
+    return merge({}, state, newState)
+}
+
+function reposMerger(state, newState) {
+    return Object.values(newState).reduce((state, repo) => {
+        state[repo.id] = {
+            ...state[repo.id],
+            ...repo,
+            issues: uniq([
+                ...(state[repo.id] && state[repo.id].issues) || [],
+                ...repo.issues || []
+            ])
+        }
+        return state
+    }, state)
+}
+
 export default combineReducers({
-    users: createEntityReducer('users'),
+    users: createEntityReducer('users', usersMerger),
     repos: createEntityReducer('repos', reposMerger),
     issues: createEntityReducer('issues')
 })
