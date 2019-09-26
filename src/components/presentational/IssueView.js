@@ -19,8 +19,8 @@ export default function IssueView({ issue }) {
                 <a href={issue.author.url} target="_blank" rel="noopener noreferrer">
                     {issue.author.login || 'Unknown author'}
                 </a>
+                <span>Updated: {updateDate}</span>
             </div>
-            <div className="issue-view__updated-time">Updated: {updateDate}</div>
             <div className="issue-view__body">
                 <Markdown source={issue.body || 'No body'} />
             </div>

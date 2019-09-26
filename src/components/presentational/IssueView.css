@@ -15,22 +15,44 @@
 
 .issue-view__author {
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 64px auto;
+    grid-template-rows: 32px 32px;
+    column-gap: 5px;
     font-size: 18px;
-    margin: 0.5em 0;
+    margin: 1em 0;
     padding: 0;
 }
 
 .issue-view__author>img {
-    width: 32px;
-    height: 32px;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    justify-self: center;
+    align-self: center;
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
 }
 
 .issue-view__author>a {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: start;
+    align-self: center;
     color: black;
+    margin-right: 25px;
 }
 
 .issue-view__author>a:visited {
     color: black;
+}
+
+.issue-view__author>span {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    justify-self: start;
+    align-self: center;
+    font-size: 14px;
 }
 
 .issue-view__body {
@@ -50,8 +72,4 @@
 .issue-view__body img {
     max-width: 100%;
     height: auto;
-}
-
-.issue-view__updated-time {
-    font-size: 14px;
 }
