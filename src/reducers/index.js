@@ -24,7 +24,7 @@ export function getRepoHints(state, sorted=false) {
     if (!sorted) {
         return repos
     }
-    const sortedRepos = repos.sort()
+    const sortedRepos = repos.slice().sort()
     return sortedRepos
 }
 
@@ -33,7 +33,7 @@ export function getIssuesForRepoByOwnerAndName(state, user, name, sorted=false) 
     if (!sorted) {
         return issues
     }
-    const sortedIssues = issues.sort((a, b) => moment(a.updatedAt).isAfter(b.updatedAt) ? -1 : 1)
+    const sortedIssues = issues.slice().sort((a, b) => moment(a.updatedAt).isAfter(b.updatedAt) ? -1 : 1)
     return sortedIssues;
 }
 
