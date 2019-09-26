@@ -12,7 +12,7 @@ import { actionInputUser, actionInputRepo } from '../../actions'
 function RepoSearchContainer({ history }) {
     const user = useSelector(getInputUser)
     const repo = useSelector(getInputRepo)
-    const repos = useSelector(getRepoHints)
+    const repos = useSelector((state) => getRepoHints(state, true))
     const dispatch = useDispatch()
     const handleChangeUser = (user) => dispatch(actionInputUser(user))
     const handleChangeRepo = (repo) => dispatch(actionInputRepo(repo))

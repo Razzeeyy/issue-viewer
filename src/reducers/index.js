@@ -18,9 +18,14 @@ export function getInputRepo(state) {
     return fromInput.getInputRepo(state.input)
 }
 
-export function getRepoHints(state) {
+export function getRepoHints(state, sorted=false) {
     const inputUser = getInputUser(state)
-    return fromEntities.getReposByOwner(state.entities, inputUser)
+    const repos = fromEntities.getReposByOwner(state.entities, inputUser)
+    if (!sorted) {
+        return repos
+    }
+    const sortedRepos = repos.sort()
+    return sortedRepos
 }
 
 export function getIssuesForRepoByOwnerAndName(state, user, name, sorted=false) {
