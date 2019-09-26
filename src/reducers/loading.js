@@ -26,7 +26,15 @@ const handleActions = [
     ACTION_FETCH_ISSUE_FAIL
 ]
 
-const  defaultState = {}
+const  defaultState = {
+    loadingRepos: {},
+    loadingIssues: {},
+    loadingIssue: {}
+}
+
+const hashUser = (user) => `${user}`
+const hashUserRepo = (user, repo) => `${user}/${repo}`
+const hashUserRepoIssue = (user, repo, issue) => `${user}/${repo}/${issue}`
 
 export default function loadingReducer(state=defaultState, action) {
     if(!handleActions.includes(action.type)) {
@@ -34,132 +42,94 @@ export default function loadingReducer(state=defaultState, action) {
     }
 
     const { user, repo, number } = action.meta
-    const userState = state[user] || { loadingRepos: 0, repos: {} }
-    const repoState = userState.repos[repo] || { loadingIssues: 0, issues: {} }
-    const issueState = repoState.issues[number] || { loading: 0 }
 
     switch(action.type) {
-        case ACTION_FETCH_REPOS:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    loadingRepos: userState.loadingRepos + 1
-                }
+        case ACTION_FETCH_REPOS: {
+            const hash = hashUser(user)
+            state.loadingRepos = {
+                ...state.loadingRepos,
+                [hash]: true
             }
+            return { ...state }
+        }
         case ACTION_FETCH_REPOS_OK:
-        case ACTION_FETCH_REPOS_FAIL:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    loadingRepos: userState.loadingRepos - 1
-                }
+        case ACTION_FETCH_REPOS_FAIL: {
+            const hash = hashUser(user)
+            state.loadingRepos = {
+                ...state.loadingRepos,
+                [hash]: false
             }
+            return { ...state }
+        }
 
-        case ACTION_FETCH_ISSUES:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    repos: {
-                        ...userState.repos,
-                        [repo]: {
-                            ...repoState,
-                            loadingIssues: repoState.loadingIssues + 1
-                        }
-                    }
-                }
+        case ACTION_FETCH_ISSUES: {
+            const hash = hashUserRepo(user, repo)
+            state.loadingIssues = {
+                ...state.loadingIssues,
+                [hash]: true
             }
+            return { ...state }
+        }
         case ACTION_FETCH_ISSUES_OK:    
-        case ACTION_FETCH_ISSUES_FAIL:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    repos: {
-                        ...userState.repos,
-                        [repo]: {
-                            ...repoState,
-                            loadingIssues: repoState.loadingIssues - 1
-                        }
-                    }
-                }
+        case ACTION_FETCH_ISSUES_FAIL: {
+            const hash = hashUserRepo(user, repo)
+            state.loadingIssues = {
+                ...state.loadingIssues,
+                [hash]: false
             }
+            return { ...state }
+        }
         
 
-        case ACTION_FETCH_ISSUE:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    repos: {
-                        ...userState.repos,
-                        [repo]: {
-                            ...repoState,
-                            issues: {
-                                ...repoState.issues,
-                                [number]: {
-                                    ...issueState,
-                                    loading: issueState.loading + 1
-                                }
-                            }
-                        }
-                    }
-                }
+        case ACTION_FETCH_ISSUE: {
+            const hash = hashUserRepoIssue(user, repo, number)
+            state.loadingIssue = {
+                ...state.loadingIssue,
+                [hash]: true
             }
+            return { ...state }
+        }
         case ACTION_FETCH_ISSUE_OK:
-        case ACTION_FETCH_ISSUE_FAIL:
-            return {
-                ...state,
-                [user]: {
-                    ...userState,
-                    repos: {
-                        ...userState.repos,
-                        [repo]: {
-                            ...repoState,
-                            issues: {
-                                ...repoState.issues,
-                                [number]: {
-                                    ...issueState,
-                                    loading: issueState.loading - 1
-                                }
-                            }
-                        }
-                    }
-                }
+        case ACTION_FETCH_ISSUE_FAIL:{
+            const hash = hashUserRepoIssue(user, repo, number)
+            state.loadingIssue = {
+                ...state.loadingIssue,
+                [hash]: false
             }
+            return { ...state }
+        }
 
         default:
             return state
     }
 }
 
-//TODO: FIXME: add ability to check if ever tried loading something, would help fix false "No Something" flash when components render initially
-
 export function getIsLoadingRepos(state, user) {
-    const userState = state[user]
-    return userState ? userState.loadingRepos !== 0 : false
+    const hash = hashUser(user)
+    return !!state.loadingRepos[hash]
 }
 
 export function getIsLoadingIssues(state, user, repo) {
-    const userState = state[user]
-    if (!userState) {
-        return false
-    }
-    const repoState = state[user].repos[repo]
-    return repoState ? repoState.loadingIssues !== 0 : false
+    const hash = hashUserRepo(user, repo)
+    return !!state.loadingIssues[hash]
 }
 
 export function getIsLoadingIssue(state, user, repo, issue) {
-    const userState = state[user]
-    if (!userState) {
-        return false
-    }
-    const repoState = state[user].repos[repo]
-    if (!repoState) {
-        return false
-    }
-    const issueState = repoState.issues[issue]
-    return issueState ? issueState.loading !== 0 : false
+    const hash = hashUserRepoIssue(user, repo, issue)
+    return !!state.loadingIssue[hash]
+}
+
+export function getIsEverLoadedRepos(state, user) {
+    const hash = hashUser(user)
+    return state.loadingRepos[hash] !== undefined
+}
+
+export function getIsEverLoadedIssues(state, user, repo) {
+    const hash = hashUserRepo(user, repo)
+    return state.loadingIssues[hash] !== undefined
+}
+
+export function getIsEverLoadedIssue(state, user, repo, issue) {
+    const hash = hashUserRepoIssue(user, repo, issue)
+    return state.loadingIssue[hash] !== undefined
 }

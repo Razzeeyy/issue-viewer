@@ -6,7 +6,7 @@ import RepoSearch from '../presentational/RepoSearch'
 import LoadingIndicator from '../presentational/LoadingIndicator'
 import RepoHintsList from '../presentational/RepoHintsList'
 import Notice from '../presentational/Notice'
-import { getInputUser, getInputRepo, getRepoHints, getIsLoadingRepos } from '../../reducers'
+import { getInputUser, getInputRepo, getRepoHints, getIsLoadingRepos, getIsEverLoadedRepos } from '../../reducers'
 import { actionInputUser, actionInputRepo } from '../../actions'
 
 function RepoSearchContainer({ history }) {
@@ -28,8 +28,9 @@ function RepoSearchContainer({ history }) {
         }
     }
     const isLoadingRepos = useSelector(state => getIsLoadingRepos(state, user))
+    const isEverLoadedRepos = useSelector(state => getIsEverLoadedRepos(state, user))
 
-    const displayNotice = !repos.length && !isLoadingRepos
+    const displayNotice = isEverLoadedRepos && !repos.length && !isLoadingRepos
 
     return (
         <>

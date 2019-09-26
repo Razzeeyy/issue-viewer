@@ -39,7 +39,7 @@ export function getIssuesForRepoByOwnerAndName(state, user, name, sorted=false) 
 
 export function getIssueByNumberFromRepo(state, user, repo, number, denormalizeAuthor=false) {
     const issue = fromEntities.getIssueByNumberFromRepo(state.entities, user, repo, number)
-    if (!denormalizeAuthor) {
+    if (!denormalizeAuthor || !issue.author) {
         return issue
     }
     return {
@@ -62,4 +62,16 @@ export function getIsLoadingIssues(state, user, repo) {
 
 export function getIsLoadingIssue(state, user, repo, number) {
     return fromLoading.getIsLoadingIssue(state.loading, user, repo, number)
+}
+
+export function getIsEverLoadedRepos(state, user) {
+    return fromLoading.getIsEverLoadedRepos(state.loading, user)
+}
+
+export function getIsEverLoadedIssues(state, user, repo) {
+    return fromLoading.getIsEverLoadedIssues(state.loading, user, repo)
+}
+
+export function getIsEverLoadedIssue(state, user, repo, issue) {
+    return fromLoading.getIsEverLoadedIssue(state.loading, user, repo, issue)
 }

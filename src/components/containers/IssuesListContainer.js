@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import IssuesList from '../presentational/IssuesList'
 import Notice from '../presentational/Notice'
 import LoadingIndicator from '../presentational/LoadingIndicator'
-import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository, getIsLoadingIssues } from '../../reducers'
+import { getIssuesForRepoByOwnerAndName, getRecentCursorForRepository, getIsLoadingIssues, getIsEverLoadedIssues } from '../../reducers'
 import { actionRequestIssues, actionInputUser, actionInputRepo } from '../../actions';
 
 function IssuesListContainer({ match, history }) {
@@ -30,8 +30,9 @@ function IssuesListContainer({ match, history }) {
     )
 
     const isLoadingIssues = useSelector(state => getIsLoadingIssues(state, user, repo))
+    const isEverLoadedIssues = useSelector(state => getIsEverLoadedIssues(state, user, repo))
     
-    const displayNotice = !issues.length && !isLoadingIssues
+    const displayNotice = isEverLoadedIssues && !issues.length && !isLoadingIssues
     
     return (
         <>
