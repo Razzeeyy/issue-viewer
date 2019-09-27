@@ -3,11 +3,13 @@ import moment from 'moment'
 import input, * as fromInput from './input'
 import entities, * as fromEntities from './entities'
 import loading, * as fromLoading from './loading'
+import errors, * as fromErrors from './errors'
 
 export default combineReducers({
     input,
     entities,
-    loading
+    loading,
+    errors
 })
 
 export function getInputUser(state) {
@@ -74,4 +76,8 @@ export function getIsEverLoadedIssues(state, user, repo) {
 
 export function getIsEverLoadedIssue(state, user, repo, issue) {
     return fromLoading.getIsEverLoadedIssue(state.loading, user, repo, issue)
+}
+
+export function getError(state) {
+    return fromErrors.getError(state.errors)
 }

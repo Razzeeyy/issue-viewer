@@ -15,6 +15,7 @@ function* requestIssue(api, { payload: { user, repo, number } }) {
             yield put(actions.actionFetchIssueOk(response, user, repo, number))
         } catch(err) {
             yield put(actions.actionFetchIssueFail(err, user, repo, number))
+            yield put(actions.actionPushError(err.message))
         }
     }
 }
@@ -32,6 +33,7 @@ function* requestIssues(api, { payload: { user, repo, cursor } }) {
             yield put(actions.actionFetchIssuesOk(response, user, repo))
         } catch(err) {
             yield put(actions.actionFetchIssuesFail(err, user, repo))
+            yield put(actions.actionPushError(err.message))
         }
     }
 }

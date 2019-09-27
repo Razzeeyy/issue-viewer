@@ -17,6 +17,7 @@ function* requestRepos(api) {
             yield put(actions.actionFetchReposOk(response, user))
         } catch(err) {
             yield put(actions.actionFetchReposFail(err, user))
+            yield put(actions.actionPushError(err.message))
         }
     }
 }

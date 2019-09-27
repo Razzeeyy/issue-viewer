@@ -86,3 +86,11 @@ export function actionFetchIssueFail(error, user, repo, number) {
         user, repo, number
     })
 }
+
+export function actionPushError(error) {
+    return action(constants.ACTION_PUSH_ERROR, error)
+}
+
+export function actionPopError() {
+    return action(constants.ACTION_POP_ERROR)
+}
