@@ -3,18 +3,16 @@ import React from 'react'
 import ErrorPage from './pages/ErrorPage'
 
 export default class ErrorBoundary extends React.Component {
-    state = { error: null, info: null }
+    state = { error: null }
 
     componentDidCatch(error, info) {
-        this.setState({error, info})
-        console.log(error) //TODO: a better logging method
-        console.log(info)
+        this.setState({ error })
+        console.error(error, '\n', info.componentStack || info)
     }
 
     render() {
         const {
-            error,
-            //info
+            error
         } = this.state
 
         if(error) {
