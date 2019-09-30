@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Notice from '../presentational/Notice'
+import ErrorMessage from '../presentational/ErrorMessage'
 import { getError } from '../../reducers'
 import { actionPopError } from '../../actions'
 
@@ -19,7 +19,7 @@ export default function ErrorMessageContainer() {
 
     return (
         <>
-            { errorMessage && <Notice text={errorMessage} /> }
+            { errorMessage && <ErrorMessage text={errorMessage} /> }
         </>
     )
 }
