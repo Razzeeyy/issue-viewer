@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import BackLink from '../presentational/BackLink'
 import './Page.css'
 
 import { getInputUser, getInputRepo } from '../../reducers'
@@ -14,7 +14,7 @@ export default function DetailsPage(props) {
     return (
         <div className="page-container">
             <ErrorMessageContainer />
-            <Link to={`/${user}/${repo}`}>Go back</Link>
+            <BackLink to={`/${user}/${repo}`} text="Go back"/>
             <IssueViewContainer />
         </div>
     )

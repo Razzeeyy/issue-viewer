@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import BackLink from '../presentational/BackLink'
 import './Page.css'
 
 import IssuesListContainer from '../containers/IssuesListContainer'
@@ -9,7 +9,7 @@ export default function IssuesPage(props) {
     return (
         <div className="page-container">
             <ErrorMessageContainer />
-            <Link to="/">Go back</Link>
+            <BackLink to="/" text="Go back"/>
             <IssuesListContainer />
         </div>
     )
