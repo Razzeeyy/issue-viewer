@@ -3,12 +3,15 @@ import './Page.css'
 
 export default function ErrorPage(props) {
     const { message } = props;
-// TODO: write better error page
+// TODO: style error page
     return (
         <div className="page-container">
-            <a href="/">Back to Main</a>
-            <br/>
-            {message || 'Something went wrong.'}
+            <div>
+                Something went horribly wrong, but no worries!
+            </div>
+            <a href="/">Please click here to go back to safety</a>
+            <div>If you're techy person here is this:</div>
+            <div>{message || 'Something went wrong.'}</div>
         </div>
     )
 }
