@@ -19,3 +19,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+@media(min-width: 800px) {
+    #root {
+        background: linear-gradient(150deg, #5acf69 0%, #5acf69 50%, #494949 50%, #494949 100%);
+    }
+}
