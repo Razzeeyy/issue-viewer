@@ -5,7 +5,7 @@ import { getError } from '../../reducers'
 import { actionPopError } from '../../actions'
 
 export default function ErrorMessageContainer() {
-    const MESSAGE_TIME = 2000
+    const MESSAGE_TIME = 3000
     const errorMessage = useSelector(getError)
     const dispatch = useDispatch()
     

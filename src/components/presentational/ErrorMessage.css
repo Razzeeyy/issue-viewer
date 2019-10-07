@@ -1,3 +1,21 @@
+@keyframes error-animation  {
+    0% {
+        background-color: rgba(255, 0, 0, 0);
+    }
+
+    10% {
+        background-color: rgba(255, 0, 0, 1);
+    }
+
+    75% {
+        background-color: rgba(255, 0, 0, 1);
+    }
+
+    100% {
+        background-color: rgba(255, 0, 0, 0);
+    }
+}
+
 .error-message {
     box-sizing: border-box;
     position: absolute;
@@ -6,6 +24,8 @@
     right: 0;
     bottom: 0;
     background-color: red;
+    padding: 5px;
+    animation: error-animation 3.1s linear;
 }
 
 .error-message__text {
@@ -14,6 +34,11 @@
 
 @media(min-width: 800px) {
     .error-message {
-        width: 320px;
+        width: 400px;
+        height: 100px;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
     }
 }
