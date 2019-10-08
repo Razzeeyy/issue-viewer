@@ -29,5 +29,6 @@
 @media(min-width: 800px) {
     .repo-hints-list__item {
         padding: 1em;
+        margin-right: 1em;
     }
 }
