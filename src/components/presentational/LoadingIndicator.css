@@ -1,11 +1,11 @@
 .loading-indicator {
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     display: block;
     width: 100%;
-    height: 2px;
+    height: 3px;
     visibility: visible;
 }
 
@@ -20,27 +20,27 @@
     top: 0;
     display: inline-block;
     width: 25px;
-    height: 2px;
-    background: black;
+    height: 3px;
+    background: #ffffff;
     transform: translate(-50%);
 }
 
 @keyframes slider-animation  {
     0% {
         left: 0%;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(90, 207, 105, 0.1);
         width: 25px;
     }
 
     50% {
         left: 50%;
-        background-color: rgba(0, 0, 0, 1);
+        background-color: rgba(90, 207, 105, 1);
         width: 25%;
     }
 
     100% {
         left: 100%;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(90, 207, 105, 0.1);
         width: 25px;
     }
 }
