@@ -1,7 +1,7 @@
 .page-container {
     box-sizing: border-box;
     position: relative;
-    width: auto;
+    width: 100%;
     min-height: 100%;
     margin: 0;
     padding: 0 10px;

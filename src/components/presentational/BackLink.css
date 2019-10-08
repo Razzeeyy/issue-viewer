@@ -1,11 +1,15 @@
 .back-link {
     box-sizing: border-box;
     position: sticky;
-    background: yellowgreen;
+    background: #5acf69;
+    color: #000000;
     margin: 0;
-    margin-left: -10px;
+    margin-left: -20px;
     padding: 10px;
     left: 0;
     top: 0;
     border-bottom-right-radius: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 10px 0px #000000;
 }
