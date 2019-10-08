@@ -42,7 +42,7 @@ function IssuesListContainer({ match, history }) {
                 issues={issues || []}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}
                 onEndReached={handleScrolledToEnd}
-                endOffset={25}
+                endOffset={0}
             />
         </>
     )
