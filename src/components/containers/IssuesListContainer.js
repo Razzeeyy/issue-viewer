@@ -37,7 +37,7 @@ function IssuesListContainer({ match, history }) {
     return (
         <>
             <LoadingIndicator isLoading={isLoadingIssues} />
-            { displayNotice && <Notice text="No issues" /> }
+            { displayNotice && <Notice className="issues-notice" text="No issues" /> }
             <IssuesList
                 issues={issues || []}
                 onIssueClick={(issue_number) => history.push(`/${user}/${repo}/${issue_number}`)}

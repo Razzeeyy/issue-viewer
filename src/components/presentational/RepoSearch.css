@@ -37,6 +37,7 @@
     border-radius: 5px;
     font-size: 18px;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 @media (min-width: 800px) {

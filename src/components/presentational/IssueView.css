@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    margin-top: 30px;
 }
 
 .issue-view__title {
@@ -22,6 +23,7 @@
     font-size: 18px;
     margin: 1em 0;
     padding: 0;
+    margin-left: 5px;
 }
 
 .issue-view__author>img {
@@ -39,12 +41,12 @@
     grid-row: 1 / span 1;
     justify-self: start;
     align-self: center;
-    color: black;
+    color: #cfcfcf;
     margin-right: 25px;
 }
 
 .issue-view__author>a:visited {
-    color: black;
+    color: #cfcfcf;
 }
 
 .issue-view__author>span {
@@ -62,6 +64,14 @@
     margin-top: 2em;
     padding: 0;
     word-wrap: break-word;
+}
+
+.issue-view__body a {
+    color: #cfcfcf;
+}
+
+.issue-view__body a::visited {
+    color: #cfcfcf;
 }
 
 .issue-view__body pre {

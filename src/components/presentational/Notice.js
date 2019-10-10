@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function Notice({ text }) {
-    return <span>{text}</span>
+export default function Notice({ text, className }) {
+    return <span className={className}>{text}</span>
 }

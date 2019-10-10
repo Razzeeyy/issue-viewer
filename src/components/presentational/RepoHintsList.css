@@ -20,6 +20,7 @@
     margin-right: 0.5em;
     margin-bottom: 0.75em;
     padding: 0.5em;
+    cursor: pointer;
 }
 
 .repo-hints-list__item:last-child {
