@@ -1,0 +1,33 @@
+image: node:alpine
+
+variables:
+  PUBLIC_URL: /issue-viewer-github
+
+cache:
+  paths:
+  - node_modules
+
+before_script:
+  - npm install
+
+stages:
+- test
+- deploy
+
+test:
+  stage: test
+  script:
+    - CI=true npm test
+
+pages:
+  stage: deploy
+  script:
+    - CI=true REACT_APP_GITHUB_API_TOKEN=$GITHUB_API_TOKEN npm run build
+    - rm -rf public
+    - mv build public
+    - cp public/index.html public/404.html
+  artifacts:
+    paths:
+    - public
+  only:
+    - master

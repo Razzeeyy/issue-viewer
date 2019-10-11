@@ -11,7 +11,7 @@ export default function ErrorPage(props) {
             </div>
             <a href="/">Please click here to go back to safety</a>
             <div>If you're techy person here is this:</div>
-            <div>{message || 'Something went wrong.'}</div>
+            <div>{message || 'No error supplied or page not found.'}</div>
         </div>
     )
 }

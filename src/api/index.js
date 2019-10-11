@@ -1,8 +1,9 @@
 import ApolloClient from 'apollo-boost'
 
-import token from './token'
 import { queryIssues, queryRepos, queryIssue } from './queries'
 import { transformIssues, transformRepos, transformIssue } from './transforms'
+
+const token = process.env.REACT_APP_GITHUB_API_TOKEN
 
 export default function configureApi() {
     const client = new ApolloClient({

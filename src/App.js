@@ -9,13 +9,15 @@ import MainPage from './components/pages/MainPage'
 import DetailsPage from './components/pages/DetailsPage';
 import IssuesPage from './components/pages/IssuesPage';
 
+const basename = process.env.PUBLIC_URL || ''
+
 const store = configureStore()
-const history = createBrowserHistory()
+const history = createBrowserHistory({ basename })
 
 function App() {
   return (
     <Provider store={store}>
-      <Router history={history}>
+      <Router history={history} basename={basename}>
         <ErrorBoundary>
           <Switch>
             <Route path="/" exact component={MainPage}/>
