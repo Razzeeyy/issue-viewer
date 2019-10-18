@@ -1,0 +1,32 @@
+.error-page__explanation {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding-top: 2em;
+    margin-bottom: 1em;
+    font-size: 24px;
+}
+
+.error-page__backlink {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 22px;
+    color: #cfcfcf
+}
+
+.error-page__tech {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-top: 10em;
+    margin-bottom: 1em;
+    font-size: 14px;
+}
+
+.error-page__error {
+    color: #cf5a5a;
+}
