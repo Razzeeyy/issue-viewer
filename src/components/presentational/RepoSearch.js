@@ -15,9 +15,9 @@ export default function RepoSearch({
     return (
         <>
             <form className="repo-search" onSubmit={handleSumbit}>
-                <input className="repo-search__input" type="text" name="user" placeholder="Пользователь" value={user} onChange={handleUserChange}/>
-                <input className="repo-search__input" type="text" name="repository" placeholder="Репозиторий" value={repo} onChange={handleRepoChange}/>
-                <input className="repo-search__submit" type="submit" value="Поиск"/>
+                <input className="repo-search__input" type="text" name="user" placeholder="Username" value={user} onChange={handleUserChange}/>
+                <input className="repo-search__input" type="text" name="repository" placeholder="Repository" value={repo} onChange={handleRepoChange}/>
+                <input className="repo-search__submit" type="submit" value="Search"/>
             </form>
         </>
     )
